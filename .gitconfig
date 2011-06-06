@@ -1,0 +1,16 @@
+[diff]
+	tool = vimdiff
+[alias]
+	unstage = reset HEAD --
+	last = log -1 HEAD
+	graph = "log --graph --oneline --full-history --color --branches --decorate --all"
+
+[color]
+        status = auto
+        branch = auto
+        diff = auto
+        interactive = auto
+
+[user]
+	name = mduan
+	email = duan.mack@gmail.com
