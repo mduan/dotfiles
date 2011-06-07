@@ -6,10 +6,10 @@
 	graph = "log --graph --oneline --full-history --color --branches --decorate --all"
 
 [color]
-        status = auto
-        branch = auto
-        diff = auto
-        interactive = auto
+	status = auto
+	branch = auto
+	diff = auto
+	interactive = auto
 
 [user]
 	name = mduan

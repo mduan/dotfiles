@@ -138,9 +138,7 @@ endfunction
 
 " Basic config
 colorscheme desert    " Color scheme to use
-filetype plugin on		" Enable plugins
 syntax on             " Enable syntax highlighting
-" filetype plugin indent on " Use custom filetype indentation rules in .vim/ftplugin/<lang>.vim
 
 " General sets
 set nocompatible			" Use vim defaults
@@ -321,6 +319,27 @@ autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
 autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
+
+" Vundle setup ---------------------------------------------
+
+filetype off												" Use vundle for plugin management
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" Let Vundle manage Vundle; required
+Bundle 'gmarik/vundle'
+
+" Bundles to manage
+
+" Navigation and browsing
+Bundle 'scrooloose/nerdtree'
+
+" Source control
+Bundle 'tpope/vim-git'
+
+" filetype plugin on								" Enable plugins
+filetype plugin indent on						" Use custom filetype indentation rules in .vim/ftplugin/<lang>.vim
 
 " Gvim options ----------------------------------------------
 
