@@ -17,6 +17,12 @@ function! ToggleCscopeQuickfix()
   endif
 endfunction
 
+" C => F2 to compile; F3 to run
+function! CompileC()
+	map <buffer> <F2> :w<CR>:!clear;gcc -Wall %<CR>
+	map <buffer> <F3> :!./a.out<CR>
+endfunction
+
 " TODO: use make
 " C++ => F2 to compile; F3 to run
 function! CompileCpp()
@@ -24,30 +30,9 @@ function! CompileCpp()
   map <buffer> <F3> :!./a.out<CR>
 endfunction
 
-" C => F2 to compile; F3 to run
-function! CompileC()
-  map <buffer> <F2> :w<CR>:!clear;gcc -Wall %<CR>
-  map <buffer> <F3> :!./a.out<CR>
-endfunction
-
-" Scheme => F2 to to run
-function! CompileScheme()
-  map <buffer> <F2> :w<CR>:!clear;mzscheme %<CR>
-endfunction
-
 " Grep will sometimes skip displaying the file name if you search in a singe file.
 " This will confuse Latex-Suite. Set your grep program to always generate a file-name.
 set grepprg=grep\ -nH\ $*
-
-" Starting with Vim 7, the filetype of empty .tex files defaults to 'plaintex' instead
-" of 'tex', which results in vim-latex not being loaded. The following changes the default
-" filetype back to 'tex':
-let g:tex_flavor='latex'
-
-" TeX => F2 to to run
-function! CompileTex()
-  map <buffer> <F2> :w<CR>:!pdflatex % <CR>
-endfunction
 
 " Highlight line if it goes past specified column
 function! LineLengthLimit()
@@ -302,10 +287,10 @@ autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "norm
 autocmd FilterWritePre * if &diff | syntax off | endif
 
 " Compilation with F2. Run with F3.
-autocmd Filetype c call compile_c()
-autocmd Filetype cpp call compile_cpp()
-autocmd Filetype scheme call compile_scheme()
-autocmd Filetype tex call compile_tex()
+autocmd Filetype c call CompileC()
+autocmd Filetype cpp call CompileCpp()
+autocmd Filetype scheme call CompileScheme()
+autocmd Filetype tex call CompileTex()
 
 " Indentation based on filetype
 call IndentFtDefault()
