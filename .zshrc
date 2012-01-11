@@ -51,7 +51,7 @@ export PS2="$(print '%{\e[0;32m%}>%{\e[0m%}')"
 #esac
 
 # Vars used later on by Zsh
-export EDITOR="gvim -geom 82x35"
+export EDITOR=vim
 export BROWSER=links
 export XTERM="aterm +sb -geometry 80x29 -fg black -bg lightgoldenrodyellow -fn -xos4-terminus-medium-*-normal-*-14-*-*-*-*-*-iso8859-15"
 
