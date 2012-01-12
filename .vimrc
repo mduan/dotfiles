@@ -1,5 +1,15 @@
 " Helper Functions ---------------------------------------------------
 
+let sys = 'other'
+if has('win16') || has('win32') || has('win64') || has('win32unix')
+	let sys = 'win'
+elseif has('mac') || has('maxunix')
+	let sys = 'mac'
+elseif has('unix')
+	" Unix or Cygwin (which " acts like Unix)
+	let sys = 'unix'
+endif
+
 function! ReloadCscopeDb()
   exe "set nocsverb"
   exe "cs reset"
@@ -68,7 +78,7 @@ function! IndentFtTwo()
 endfunction
 
 " Paste for Windows
-function! Getclip()
+function! GetClip()
 	let reg_save = @@
 	let @@ = system('getclip')
 	setlocal paste
@@ -78,7 +88,7 @@ function! Getclip()
 endfunction
 
 " Copy for Windows
-function! Putclip(type, ...) range
+function! PutClip(type, ...) range
 	let sel_save = &selection
 	let &selection = "inclusive"
 	let reg_save = @@
@@ -252,15 +262,17 @@ noremap Y y$
 nnoremap P [p
 nnoremap p ]p
 
-" Shortcuts for system clipboard access for Ubuntu gvim and terminal vim. Will be overwritten by Yankring.
-nnoremap gp "*]p
-nnoremap gP "*[P
-nnoremap gY "+Y
-vnoremap gy "+y
-" Copy and paste to clipboard capabilities for Windows
-" vnoremap <silent> gy :call Putclip(visualmode(), 1)<CR>
-" nnoremap <silent> gy :call Putclip('n', 1)<CR>
-" nnoremap <silent> gp :call Getclip()<CR>
+" Shortcuts for system clipboard
+if sys == 'unix'
+	nnoremap gy "+y
+	vnoremap gy "+y
+	nnoremap gp "+gP
+	vnoremap gp "+gP
+elseif sys == 'win'
+	vnoremap <silent> gy :call PutClip(visualmode(), 1)<CR>
+	nnoremap <silent> gy :call PutClip('n', 1)<CR>
+	nnoremap <silent> gp :call GetClip()<CR>
+endif
 
 " Shortcut for writing to file with insufficient permissions
 cnoremap w!! w !sudo tee % >/dev/null
