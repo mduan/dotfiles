@@ -40,6 +40,11 @@ function! CompileCpp()
   map <buffer> <F3> :!./a.out<CR>
 endfunction
 
+" TeX => F2 to to run
+function! CompileTex()
+	map <buffer> <F2> :w<CR>:!pdflatex % <CR>
+endfunction
+
 " Grep will sometimes skip displaying the file name if you search in a singe file.
 " This will confuse Latex-Suite. Set your grep program to always generate a file-name.
 set grepprg=grep\ -nH\ $*
@@ -301,7 +306,6 @@ autocmd FilterWritePre * if &diff | syntax off | endif
 " Compilation with F2. Run with F3.
 autocmd Filetype c call CompileC()
 autocmd Filetype cpp call CompileCpp()
-autocmd Filetype scheme call CompileScheme()
 autocmd Filetype tex call CompileTex()
 
 " Indentation based on filetype
