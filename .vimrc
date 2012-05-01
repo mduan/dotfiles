@@ -26,6 +26,15 @@ Bundle 'gmarik/vundle'
 Bundle 'scrooloose/nerdtree'
 " Source control
 Bundle 'tpope/vim-git'
+" Syntax highlighting
+Bundle 'scrooloose/syntastic'
+" Indentation guidelines
+" Bundle 'mutewinter/vim-indent-guides'
+" Improved statusline
+Bundle 'Lokaltog/vim-powerline'
+" Improved autocompletion
+Bundle 'Shougo/neocomplcache'
+let g:neocomplcache_enable_at_startup = 1
 
 " Use custom filetype indentation rules in .vim/ftplugin/<lang>.vim
 filetype plugin indent on
@@ -158,6 +167,13 @@ nnoremap p ]p
 " Shortcut for writing to file with insufficient permissions
 cnoremap w!! w !sudo tee % >/dev/null
 
+" Move between split windows more easily
+" noremap <C-j> <C-w>j<C-w>_
+noremap <C-h> <C-w>h
+noremap <C-j> <C-w>j
+noremap <C-k> <C-w>k
+noremap <C-l> <C-w>l
+
 " Autocommands ----------------------------------------
 
 " this autocommand jumps to the last known position in a file just afer opening it
@@ -174,15 +190,6 @@ autocmd BufWinEnter * let w:ews1=matchadd('ExtraWhitespace', '\s\+$', -1)
 autocmd InsertEnter * let w:ews2=matchadd('ExtraWhitespace', '\s\+\%#\@<!$', -1)
 autocmd InsertLeave * let w:ews3=matchadd('ExtraWhitespace', '\s\+$', -1)
 autocmd BufWinLeave * call clearmatches()
-
-" Gvim options ----------------------------------------------
-
-" Turn off scrollbars and other unnecessary menu items. The initial += is a bug workaround
-" set guioptions+=LlRrbT
-" set guioptions-=LlRrbT
-"
-" Disallow menu access using the Alt key
-" set winaltkeys=no
 
 " CScope options ------------------------------------------------
 
