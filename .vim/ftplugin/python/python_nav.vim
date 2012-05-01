@@ -27,8 +27,9 @@
 " vim (>= 7)
 "
 " Shortcuts:
-"   ]t      -- Jump to beginning of block
-"   ]e      -- Jump to end of block
+" These are probably wrong now
+"   ]K      -- Jump to beginning of block
+"   ]J      -- Jump to end of block
 "   ]v      -- Select (Visual Line Mode) block
 "   ]<      -- Shift block to left
 "   ]>      -- Shift block to right
@@ -36,8 +37,8 @@
 "   ]u      -- Uncomment selection
 "   ]c      -- Select current/previous class
 "   ]d      -- Select current/previous function
-"   ]<up>   -- Jump to previous line with the same/lower indentation
-"   ]<down> -- Jump to next line with the same/lower indentation
+"   ]k      -- Jump to previous line with the same/lower indentation
+"   ]j      -- Jump to next line with the same/lower indentation
 
 " Only do this when not done yet for this buffer
 if exists("b:loaded_py_ftplugin")
@@ -45,10 +46,17 @@ if exists("b:loaded_py_ftplugin")
 endif
 let b:loaded_py_ftplugin = 1
 
-noremap  ]t   :PBoB<CR>
-vnoremap ]t   :<C-U>PBOB<CR>m'gv``
-noremap  ]e   :PEoB<CR>
-vnoremap ]e   :<C-U>PEoB<CR>m'gv``
+noremap  ]K   :PBoB<CR>
+vnoremap ]K   :<C-U>PBoB<CR>m'gv``
+noremap  ]J   :PEoB<CR>
+vnoremap ]J   :<C-U>PEoB<CR>m'gv``
+
+"noremap  ]<up>    :call PythonNextLine(-1)<CR>
+"noremap  ]<down>  :call PythonNextLine(1)<CR>
+noremap  ]k   :call PythonNextLine(-1)<CR>
+vnoremap ]k   :<C-U>call PythonNextLine(-1)<CR>m'gv``
+noremap  ]j   :call PythonNextLine(1)<CR>
+vnoremap ]j   :<C-U>call PythonNextLine(1)<CR>m'gv``
 
 noremap  ]v   ]tV]e
 noremap  ]<   ]tV]e<
@@ -56,33 +64,29 @@ vnoremap ]<   <
 noremap  ]>   ]tV]e>
 vnoremap ]>   >
 
-map  ]#   :call PythonCommentSelection()<CR>
-vmap ]#   :call PythonCommentSelection()<CR>
-map  ]u   :call PythonUncommentSelection()<CR>
-vmap ]u   :call PythonUncommentSelection()<CR>
+noremap  ]#   :call PythonCommentSelection()<CR>
+vnoremap ]#   :call PythonCommentSelection()<CR>
+noremap  ]u   :call PythonUncommentSelection()<CR>
+vnoremap ]u   :call PythonUncommentSelection()<CR>
 
-map  ]c   :call PythonSelectObject("class")<CR>
-map  ]d   :call PythonSelectObject("function")<CR>
-
-noremap  ]<up>    :call PythonNextLine(-1)<CR>
-noremap  ]<down>  :call PythonNextLine(1)<CR>
-" You may prefer use <s-up> and <s-down>... :-)
+noremap  ]c   :call PythonSelectObject("class")<CR>
+noremap  ]d   :call PythonSelectObject("function")<CR>
 
 " jump to previous class
-map  ]J   :call PythonDec("class", -1)<CR>
-vmap ]J   :call PythonDec("class", -1)<CR>
+noremap  ]t   :call PythonDec("class", -1)<CR>
+vnoremap ]t   :call PythonDec("class", -1)<CR>
 
 " jump to next class
-map  ]j   :call PythonDec("class", 1)<CR>
-vmap ]j   :call PythonDec("class", 1)<CR>
+noremap  ]e   :call PythonDec("class", 1)<CR>
+vnoremap ]e   :call PythonDec("class", 1)<CR>
 
 " jump to previous function
-map  ]F   :call PythonDec("function", -1)<CR>
-vmap ]F   :call PythonDec("function", -1)<CR>
+noremap  ]F   :call PythonDec("function", -1)<CR>
+vnoremap ]F   :call PythonDec("function", -1)<CR>
 
 " jump to next function
-map  ]f   :call PythonDec("function", 1)<CR>
-vmap ]f   :call PythonDec("function", 1)<CR>
+noremap  ]f   :call PythonDec("function", 1)<CR>
+vnoremap ]f   :call PythonDec("function", 1)<CR>
 
 
 
