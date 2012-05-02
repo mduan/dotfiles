@@ -1,3 +1,6 @@
+" Must be before any mappings are set
+let mapleader=','
+
 " Set up a global SYSTEM variable --------------------------------
 let g:SYSTEM = 'other'
 if has('win16') || has('win32') || has('win64') || has('win32unix')
