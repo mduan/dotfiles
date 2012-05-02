@@ -314,7 +314,7 @@ function! LineLengthLimit(length)
   else
     " au BufWinEnter * let w:m1=matchadd('Search', '\%<' . (g:LINE_LENGTH_LIMIT+1) .'v.\%>' . (g:LINE_LENGTH_LIMIT-3) . 'v', -1)
     " au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>' . g:LINE_LENGTH_LIMIT . 'v.\+', -1)
-    highlight OverLength ctermbg=darkred ctermfg=white guibg=#ffd9d
+    highlight OverLength ctermbg=darkred ctermfg=white guibg=#ffe9e9
     au BufWinEnter * let w:ol=matchadd('OverLength', '\%' . (g:LINE_LENGTH_LIMIT+1) .'v\+', -1)
   endif
 endfunction
