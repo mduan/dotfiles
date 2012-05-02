@@ -52,6 +52,7 @@ Bundle 'vim-scripts/a.vim'
 " This provides similar functionality to mduan/python.vim
 Bundle 'vim-scripts/python_match.vim'
 " Yankring for imrpoved copy/paste
+" Causes slow startup in vim, but seems fine in gvim
 Bundle 'vim-scripts/YankRing.vim'
 " Undo tree
 Bundle 'sjl/gundo.vim'
