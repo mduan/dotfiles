@@ -23,7 +23,7 @@ call vundle#rc()
 " Let Vundle manage Vundle; required
 Bundle 'gmarik/vundle'
 
-" Bundles to manage -------------
+" Bundles to manage -----------------
 
 " Navigation and browsing
 Bundle 'scrooloose/nerdtree'
@@ -32,14 +32,42 @@ Bundle 'tpope/vim-git'
 " Syntax highlighting
 Bundle 'scrooloose/syntastic'
 " Indentation guidelines
-" Bundle 'mutewinter/vim-indent-guides'
+  " Bundle 'mutewinter/vim-indent-guides'
 " Improved statusline
 Bundle 'Lokaltog/vim-powerline'
 " Improved autocompletion
 Bundle 'Shougo/neocomplcache'
 let g:neocomplcache_enable_at_startup = 1
 " Improved file finding
+" Additional installation instuctions at https://github.com/wincent/Command-T
+" being performed by setup.sh
 Bundle 'wincent/Command-T'
+" Surround content in brackets, parens, quotes, etc...
+Bundle 'tpope/vim-surround'
+" Improved bracket, parens, quotes, etc... matching
+Bundle 'vim-scripts/matchit.zip'
+" Few quick commands to switch between source/header files quickly
+Bundle 'vim-scripts/a.vim'
+" Matching capability for Python using %
+" This provides similar functionality to mduan/python.vim
+Bundle 'vim-scripts/python_match.vim'
+" Yankring for imrpoved copy/paste
+Bundle 'vim-scripts/YankRing.vim'
+" Undo tree
+Bundle 'sjl/gundo.vim'
+" Matching capability for Python using ]
+" This provides similar functionality to vim-scripts/python_match.vim
+Bundle 'mduan/python.vim'
+" Visually see marks
+" Requires vim compiles with +signs feature
+Bundle 'mduan/ShowMarks'
+
+" Shortcuts for plugins ---------------------------------------
+nnoremap <F2> :NERDTreeToggle<CR>
+nnoremap <F3> :YRShow<CR>
+nnoremap <F5> :GundoToggle<CR>
+
+" -----------------------------------------------------------------
 
 " Use custom filetype indentation rules in .vim/ftplugin/<lang>.vim
 filetype plugin indent on
@@ -50,7 +78,7 @@ filetype plugin indent on
 colorscheme desert    " Color scheme to use
 syntax on             " Enable syntax highlighting
 
-" General sets
+" General option sets
 set nocompatible      " Use vim defaults
 set laststatus=2      " Always show status line
 set scrolloff=5       " Number of lines to keep below when scrolling
@@ -58,7 +86,6 @@ set showcmd           " Display incomplete commands
 set hlsearch          " Highlight searches
 set incsearch         " Do incremental searches
 set ruler             " Show the cursor position all the time
-set visualbell t_vb=  " Turn off the visual bell
 set number            " Show line numbers
 set ignorecase        " Ignore case when searching
 set smartcase         " Case-sensitive if there's at least one capital letter in needle
@@ -74,6 +101,7 @@ set mouse=a           " Allow mouse to be used. Works on Ubuntu gvim AND termina
 set autochdir         " Automatically change directories when switching windows
 set tags=tags;/       " Look in the current dir and up tree towards root until a tag file is found
 set autoread          " Automatically reload changed files on disk (useful for git branch switching)
+set updatetime=500    " Affects freq that CursorHold autocommand is triggered, used by ShowMarks plugin
 "set autowrite        " Automatically write buffers to file when switching to another buffer (i.e. :next, etc)
 "set nrformats=alpha  " Allow incrementing letters
 "set noignorecase     " Don't ignore case when searching
@@ -325,4 +353,4 @@ function! LineLengthLimit(length)
 endfunction
 
 " Fixes issue with content not displaying on startup --------------------
-redraw!
+" redraw!
