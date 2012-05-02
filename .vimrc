@@ -37,7 +37,6 @@ Bundle 'scrooloose/syntastic'
 Bundle 'Lokaltog/vim-powerline'
 " Improved autocompletion
 Bundle 'Shougo/neocomplcache'
-let g:neocomplcache_enable_at_startup = 1
 " Improved file finding
 " Additional installation instuctions at https://github.com/wincent/Command-T
 " being performed by setup.sh
@@ -53,7 +52,7 @@ Bundle 'vim-scripts/a.vim'
 Bundle 'vim-scripts/python_match.vim'
 " Yankring for imrpoved copy/paste
 " Causes slow startup in vim, but seems fine in gvim
-Bundle 'vim-scripts/YankRing.vim'
+  " Bundle 'vim-scripts/YankRing.vim'
 " Undo tree
 Bundle 'sjl/gundo.vim'
 " Matching capability for Python using ]
@@ -67,6 +66,24 @@ Bundle 'mduan/ShowMarks'
 nnoremap <F2> :NERDTreeToggle<CR>
 nnoremap <F3> :YRShow<CR>
 nnoremap <F5> :GundoToggle<CR>
+
+" Additional plugin setup --------------------------------------
+
+" neocomplcache ----------------------
+
+" Disable AutoComplPop.
+let g:acp_enableAtStartup = 0
+" Use neocomplcache.
+let g:neocomplcache_enable_at_startup = 1
+" Use smartcase.
+let g:neocomplcache_enable_smart_case = 1
+" Use camel case completion.
+let g:neocomplcache_enable_camel_case_completion = 1
+" Use underbar completion.
+let g:neocomplcache_enable_underbar_completion = 1
+" Set minimum syntax keyword length.
+let g:neocomplcache_min_syntax_length = 3
+let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
 
 " -----------------------------------------------------------------
 
