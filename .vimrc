@@ -35,6 +35,8 @@ Bundle 'Lokaltog/vim-powerline'
 " Improved autocompletion
 Bundle 'Shougo/neocomplcache'
 let g:neocomplcache_enable_at_startup = 1
+" Improved file finding
+Bundle 'wincent/Command-T'
 
 " Use custom filetype indentation rules in .vim/ftplugin/<lang>.vim
 filetype plugin indent on
