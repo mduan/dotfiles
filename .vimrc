@@ -225,6 +225,11 @@ noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
 
+" Turn on 'very magic' regex status by default for searches.
+" :he /magic for more information
+nnoremap / /\v
+vnoremap / /\v
+
 " Autocommands ----------------------------------------
 
 " this autocommand jumps to the last known position in a file just afer opening it
