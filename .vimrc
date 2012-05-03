@@ -131,6 +131,12 @@ set updatetime=500    " Affects freq that CursorHold autocommand is triggered, u
 set splitbelow
 set splitright
 
+" default indentation rules
+set shiftwidth=2      " Number of spaces (auto)indent
+set tabstop=2         " Number of spaces for tab character
+set softtabstop=2
+set expandtab
+
 " Grep will sometimes skip displaying the file name if you search in a singe file.
 " This will confuse Latex-Suite. Set your grep program to always generate a file-name.
 set grepprg=grep\ -nH\ $*

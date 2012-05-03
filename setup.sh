@@ -12,6 +12,8 @@ sudo apt-get install vim
 # TODO: should be doing this with an array
 sh -c 'rm -rf ~/.dotfiles/ && git clone git://github.com/mduan/dotfiles.git ~/.dotfiles/ && ln -sf ~/.dotfiles/.zshrc ~/.zshrc && ln -sf ~/.dotfiles/.vimrc ~/.vimrc && ln -sf ~/.dotfiles/.gvimrc ~/.gvimrc && rm -rf ~/.vim && ln -sf ~/.dotfiles/.vim ~/.vim && ln -sf ~/.dotfiles/.gitconfig ~/.gitconfig'
 
+sh -c 'mkdir -p ~/.zsh && git clone https://github.com/olivierverdier/zsh-git-prompt.git ~/.zsh/git-prompt'
+
 sudo apt-get install ruby-dev # need it for mkmf needed by Command-T
 sh -c 'rm -rf ~/.vim/bundle/vundle && git clone http://github.com/gmarik/vundle.git ~/.vim/bundle/vundle/ && vim -c "BundleInstall" -c "helptags ~/.vim/bundle/vundle/doc" -c "qa!" && cd ~/.vim/bundle/Command-T/ruby/command-t && ruby extconf.rb && make && cd -'
 
@@ -46,6 +48,8 @@ echo "Add '~/.dotfiles/.xmodmaprc' to ~/.profile to load key remappings on login
 # Remap keys via Xmodmap:
 # -Caps lock to escape
 # -Right alt + h/j/k/l to arrow keys
+
+# Terminal unlimited scrollback
 
 # Get Gmail desktop notifier
 
