@@ -1,7 +1,0 @@
-xmodmap -e "clear lock";
-xmodmap -e "keycode 66 = Escape";
-xmodmap -e "keycode 108 = Mode_switch";
-xmodmap -e "keysym h = h H Left";
-xmodmap -e "keysym j = j J Down";
-xmodmap -e "keysym k = k K Up";
-xmodmap -e "keysym l = l L Right";
