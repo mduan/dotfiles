@@ -162,4 +162,7 @@ export FB_UID=1647810326
 
 source /etc/profile.d/autojump.zsh
 
-cd ~
+if [ -r ~/.zshrc.local ]
+then
+  source ~/.zshrc.local
+fi

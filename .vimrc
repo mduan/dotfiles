@@ -377,3 +377,7 @@ endfunction
 
 " Fixes issue with content not displaying on startup --------------------
 " redraw!
+
+if filereadable(expand('~/.vimrc.local'))
+  source ~/.vimrc.local
+endif
