@@ -36,18 +36,12 @@ sudo apt-get install vim-gnome; # contains more extensions than vim package (i.e
 # sudo apt-get install compiz-plugins-extra;
 
 echo "Log out and back in to use Zsh"
-# TODO: find better way to do this
-echo "Add '~/.dotfiles/.xmodmaprc' to ~/.profile to load key remappings on login"
 
 # THINGS TO CONSIDER
 
 # Crossover => Microsoft Office 2007
 
 # Setup grid in Compiz
-
-# Remap keys via Xmodmap:
-# -Caps lock to escape
-# -Right alt + h/j/k/l to arrow keys
 
 # Terminal unlimited scrollback
 
