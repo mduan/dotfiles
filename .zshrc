@@ -47,7 +47,7 @@ eval `dircolors -b`
 
 source ~/.zsh/git-prompt/zshrc.sh
 # prompt for git repos
-PROMPT='%{$fg[green]%}%n%{$reset_color%}@%{$fg[cyan]%}%m %{$fg[yellow]%}%~%{$reset_color%}% %# '
+PROMPT='%{$fg[green]%}%n%{$reset_color%}@%{$fg[cyan]%}%m%{$reset_color%}:%{$fg[yellow]%}%~%{$reset_color%} % %# '
 
 # bindkey -e  # support emac shortcuts i.e. <C-A>, <C-E>, <C-W>
 set -o vi  # set readline in Vi mode
@@ -158,6 +158,5 @@ fi
 if [ -z "$TMUX" ]
 then
   # attach to an existing session if it exists, other start new session
-  tmux a || tmux
+  tmux attach -d || tmux
 fi
-
