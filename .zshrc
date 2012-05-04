@@ -45,22 +45,22 @@ setopt share_history
 # color setup for 'ls'
 eval `dircolors -b`
 
+source ~/.zsh/git-prompt/zshrc.sh
+# prompt for git repos
+PROMPT='%{$fg[green]%}%n%{$reset_color%}@%{$fg[cyan]%}%m %{$fg[yellow]%}%~%{$reset_color%}% %# '
+
 # bindkey -e  # support emac shortcuts i.e. <C-A>, <C-E>, <C-W>
 set -o vi  # set readline in Vi mode
 # TODO: move prompt to line below
 # set up prompt to display vi mode (NORMAL/INSERT)
 function zle-line-init zle-keymap-select {
-    RPS1="${${KEYMAP/vicmd/- N -}/(main|viins)/- I -}"
-    RPS2=$RPS1
-    zle reset-prompt
+  RPS1="$(git_super_status) ${${KEYMAP/vicmd/[N]}/(main|viins)/[I]}"
+  RPS2=$RPS1
+  ZSH_THEME_GIT_PROMPT_NOCACHE=true
+  zle reset-prompt
 }
 zle -N zle-line-init
 zle -N zle-keymap-select
-
-source ~/.zsh/git-prompt/zshrc.sh
-# prompt for git repos
-PROMPT='%{$fg[green]%}%n%{$reset_color%}@%{$fg[cyan]%}%m %{$fg[yellow]%}%~%{$reset_color%}% $(git_super_status) %# '
-ZSH_THEME_GIT_PROMPT_NOCACHE=true
 
 # completions -------------------------
 
@@ -112,17 +112,17 @@ bindkey '^i' expand-or-complete-prefix
 ##################################################################
 
 # Set up auto extension stuff
-alias -s org=$BROWSER
-alias -s com=$BROWSER
-alias -s net=$BROWSER
-alias -s html=$EDITOR
-alias -s java=$EDITOR
-alias -s php=$EDITOR
-alias -s py=$EDITOR
-alias -s txt=$EDITOR
-alias -s gz=tar -xzvf
-alias -s bz2=tar -xjvf
-alias -s zip=unzip
+#alias -s org=$BROWSER
+#alias -s com=$BROWSER
+#alias -s net=$BROWSER
+#alias -s html=$EDITOR
+#alias -s java=$EDITOR
+#alias -s php=$EDITOR
+#alias -s py=$EDITOR
+#alias -s txt=$EDITOR
+#alias -s gz=tar -xzvf
+#alias -s bz2=tar -xjvf
+#alias -s zip=unzip
 
 # Normal aliases
 # alias -g L='|less' # command L equivalent to command |less
@@ -153,3 +153,11 @@ if [ -r ~/.zshrc.local ]
 then
   source ~/.zshrc.local
 fi
+
+## run tmux if we are not currently in a tmux session
+#if [ -z "$TMUX" ]
+#then
+#  # attach to an existing session if it exists, other start new session
+#  #tmux a || tmux
+#fi
+

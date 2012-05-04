@@ -8,9 +8,10 @@ sudo apt-get install zsh
 sudo chsh -s /bin/zsh
 
 sudo apt-get install git
+sudo apt-get install tmux
 sudo apt-get install vim
 # TODO: should be doing this with an array
-sh -c 'rm -rf ~/.dotfiles/ && git clone git://github.com/mduan/dotfiles.git ~/.dotfiles/ && ln -sf ~/.dotfiles/.zshrc ~/.zshrc && ln -sf ~/.dotfiles/.vimrc ~/.vimrc && ln -sf ~/.dotfiles/.gvimrc ~/.gvimrc && rm -rf ~/.vim && ln -sf ~/.dotfiles/.vim ~/.vim && ln -sf ~/.dotfiles/.gitconfig ~/.gitconfig'
+sh -c 'rm -rf ~/.dotfiles/ && git clone git://github.com/mduan/dotfiles.git ~/.dotfiles/ && ln -sf ~/.dotfiles/.zshrc ~/.zshrc && ln -sf ~/.dotfiles/.vimrc ~/.vimrc && ln -sf ~/.dotfiles/.gvimrc ~/.gvimrc && rm -rf ~/.vim && ln -sf ~/.dotfiles/.vim ~/.vim && ln -sf ~/.dotfiles/.gitconfig ~/.gitconfig && ln -sf ~/.dotfiles/.tmux.conf ~/.tmux.conf'
 
 sh -c 'mkdir -p ~/.zsh && rm -rf ~/.zsh/git-prompt && git clone https://github.com/olivierverdier/zsh-git-prompt.git ~/.zsh/git-prompt'
 
@@ -63,7 +64,6 @@ echo "Log out and back in to use Zsh"
 # ln -s /media/sda5/Dropbox ~/Dropbox
 
 # Specific issues -----------------------------------------------
-
 # Disable audio when headphones unplugged like Windows 7
 # from: http://askubuntu.com/questions/23508/how-to-automatically-change-volume-level-when-un-plugging-headphones
 # [1] vim /etc/pulse/default.pa

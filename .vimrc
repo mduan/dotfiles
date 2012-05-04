@@ -236,6 +236,13 @@ noremap <C-l> <C-w>l
 nnoremap / /\v
 vnoremap / /\v
 
+" Mappings to resize split window
+nnoremap <C-n> <C-w><
+nnoremap <C-m> <C-w>>
+nnoremap - <C-w>-
+nnoremap + <C-w>+
+
+
 " Autocommands ----------------------------------------
 
 " this autocommand jumps to the last known position in a file just afer opening it
