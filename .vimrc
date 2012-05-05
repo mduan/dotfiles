@@ -85,6 +85,13 @@ let g:neocomplcache_enable_underbar_completion = 1
 let g:neocomplcache_min_syntax_length = 3
 let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
 
+" syntastic ------------------------------
+
+" Specify filetypes active/passive syntax checking should be performed for
+let g:syntastic_mode_map = { 'mode': 'passive',
+                           \ 'active_filetypes': [],
+                           \ 'passive_filetypes': [] }
+
 " -----------------------------------------------------------------
 
 " Use custom filetype indentation rules in .vim/ftplugin/<lang>.vim
