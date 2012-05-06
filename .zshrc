@@ -47,7 +47,11 @@ eval `dircolors -b`
 
 source ~/.zsh/git-prompt/zshrc.sh
 # prompt for git repos
-PROMPT='%{$fg[green]%}%n%{$reset_color%}@%{$fg[cyan]%}%m%{$reset_color%}:%{$fg[yellow]%}%~%{$reset_color%} % %# '
+#PROMPT='%{$fg[green]%}%n%{$reset_color%}@%{$fg[cyan]%}%m%{$reset_color%}:%{$fg[yellow]%}%~%{$reset_color%} % %# '
+PROMPT='%{$fg[yellow]%}[%1~]%{$reset_color%} % %# '
+
+#function precmd() { print -Pn "\e]2;[%~]\a" }
+function precmd() { print -Pn "\e]2;%n@%m [%~]\a" }
 
 # bindkey -e  # support emac shortcuts i.e. <C-A>, <C-E>, <C-W>
 set -o vi  # set readline in Vi mode
@@ -144,6 +148,13 @@ alias hist="grep '$1' /home/mack/.zsh_history"
 alias mem="free -m"
 #alias trash='trash-put'
 #alias trash-restore='restore-trash'
+
+# pwd, but collapse $HOME to ~
+function pwdc()  {
+  local name=`pwd`
+  [[ "$name" =~ ^"$HOME"(/|$) ]] && name="~${name#$HOME}"
+  echo "$name"
+}
 
 function take() { mkdir -p $1 && cd $1 } # mkdir and cd
 
