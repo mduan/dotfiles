@@ -60,7 +60,7 @@ Bundle 'sjl/gundo.vim'
 Bundle 'mduan/python.vim'
 " Visually see marks
 " Requires vim compiles with +signs feature
-Bundle 'mduan/ShowMarks'
+  " Bundle 'mduan/ShowMarks'
 
 " Shortcuts for plugins ---------------------------------------
 nnoremap <F2> :NERDTreeToggle<CR>
@@ -161,21 +161,21 @@ noremap ` '
 " Center various navigations/movements
 nnoremap <C-e> jzz
 nnoremap <C-y> kzz
+nnoremap <C-u> <C-u>zz
+nnoremap <C-d> <C-d>zz
 nnoremap n nzz
 nnoremap N Nzz
 nnoremap * *zz
 nnoremap # #zz
 nnoremap gg ggzz
 nnoremap G Gzz
-nnoremap j jzz
-nnoremap k kzz
 
 " let [jk] go down and up by display lines instead of real lines. Let g[jk]
 " do what [jk] normally does
-nnoremap k gk
-nnoremap j gj
-nnoremap gk k
-nnoremap gj j
+nnoremap k gkzz
+nnoremap j gjzz
+nnoremap gk kzz
+nnoremap gj jzz
 
 " Scroll down/up in insert mode without displacing cursor
 inoremap <C-y> <C-o><C-y>
@@ -206,8 +206,10 @@ noremap <cr> o<esc>
 vnoremap < <gv
 vnoremap > >gv
 
+" This mapping is causing strange behaviour with mouse clicking, so disable
+" for now
 " Use escape to cancel highlight
-nnoremap <silent> <ESC> :noh<cr><ESC>
+" nnoremap <silent> <ESC> :noh<cr><ESC>
 
 " Yank to end of line
 noremap Y y$
