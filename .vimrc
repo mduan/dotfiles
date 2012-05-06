@@ -181,18 +181,6 @@ nnoremap gj j
 inoremap <C-y> <C-o><C-y>
 inoremap <C-e> <C-o><C-e>
 
-" Use alt+hjkl to navigate between split windows in Ubuntu terminal vim
-nnoremap j  <C-w>j
-nnoremap k  <C-w>k
-nnoremap h  <C-w>h
-nnoremap l  <C-w>l
-
-" Use alt+<>-= to resize split windows in Ubuntu terminal vim
-nnoremap ,  <C-w><
-nnoremap .  <C-w>>
-nnoremap =  <C-w>+
-nnoremap -  <C-w>-
-
 " Set A-] to open definition in a new tab
 " Set C-\ to open definition in a vertical split
 noremap <A-]> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
