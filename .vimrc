@@ -99,6 +99,8 @@ filetype plugin indent on
 
 " General options ----------------------------------------------------
 
+set t_Co=256          " Needs to be set before settings colorscheme
+
 " Basic config
 colorscheme desert    " Color scheme to use
 syntax on             " Enable syntax highlighting

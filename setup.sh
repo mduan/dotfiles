@@ -4,6 +4,13 @@ set -e
 read -p "This script will overwrite dotfiles in your home directory. Continue? [y/n]? " REPLY
 [[ "$REPLY" != "y" ]] && exit
 
+# TODO: manually
+# if [ -e /usr/share/terminfo/x/xterm-256color ]; then
+#   export TERM='xterm-256color'
+# else
+#   export TERM='xterm-color'
+# fi
+
 sudo apt-get install zsh
 sudo chsh -s /bin/zsh
 
@@ -11,7 +18,7 @@ sudo apt-get install git
 sudo apt-get install tmux
 sudo apt-get install vim
 # TODO: should be doing this with an array
-sh -c 'rm -rf ~/.dotfiles/ && git clone git://github.com/mduan/dotfiles.git ~/.dotfiles/ && ln -sf ~/.dotfiles/.zshrc ~/.zshrc && ln -sf ~/.dotfiles/.vimrc ~/.vimrc && ln -sf ~/.dotfiles/.gvimrc ~/.gvimrc && rm -rf ~/.vim && ln -sf ~/.dotfiles/.vim ~/.vim && ln -sf ~/.dotfiles/.gitconfig ~/.gitconfig && ln -sf ~/.dotfiles/.tmux.conf ~/.tmux.conf'
+sh -c 'rm -rf ~/.dotfiles/ && git clone git://github.com/mduan/dotfiles.git ~/.dotfiles/ && ln -sf ~/.dotfiles/.profile ~/.profile && ln -sf ~/.dotfiles/.zshrc ~/.zshrc && ln -sf ~/.dotfiles/.vimrc ~/.vimrc && ln -sf ~/.dotfiles/.gvimrc ~/.gvimrc && rm -rf ~/.vim && ln -sf ~/.dotfiles/.vim ~/.vim && ln -sf ~/.dotfiles/.gitconfig ~/.gitconfig && ln -sf ~/.dotfiles/.tmux.conf ~/.tmux.conf'
 
 sh -c 'mkdir -p ~/.zsh && rm -rf ~/.zsh/git-prompt && git clone https://github.com/olivierverdier/zsh-git-prompt.git ~/.zsh/git-prompt'
 
