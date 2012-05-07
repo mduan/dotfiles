@@ -14,7 +14,7 @@ read -p "This script will overwrite dotfiles in your home directory. Continue? [
 sudo apt-get install zsh
 sudo chsh -s /bin/zsh
 
-sudo apt-get install git
+sudo apt-get install git-core
 sudo apt-get install tmux
 sudo apt-get install vim
 # TODO: should be doing this with an array
