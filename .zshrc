@@ -145,7 +145,8 @@ alias fgrep="fgrep --color=auto"
 alias grep="grep --color=auto"
 alias gvim='gvim -geom 82x35'
 alias hist="grep '$1' /home/mack/.zsh_history"
-alias mem="free -m"
+alias mem='free -m'
+alias tmux='tmux -2'
 #alias trash='trash-put'
 #alias trash-restore='restore-trash'
 
