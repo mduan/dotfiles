@@ -146,7 +146,7 @@ alias grep="grep --color=auto"
 alias gvim='gvim -geom 82x35'
 alias hist="grep '$1' /home/mack/.zsh_history"
 alias mem='free -m'
-alias tmux='tmux -2'
+alias tmux2='tmux -2'
 #alias trash='trash-put'
 #alias trash-restore='restore-trash'
 
@@ -170,5 +170,5 @@ fi
 if [ -z "$TMUX" ]
 then
   # attach to an existing session if it exists, other start new session
-  tmux attach -d || tmux
+  tmux2 attach -d || tmux2
 fi
