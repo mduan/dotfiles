@@ -166,9 +166,9 @@ then
   source ~/.zshrc.local
 fi
 
-# run tmux if we are not currently in a tmux session
-if [ -z "$TMUX" ]
-then
-  # attach to an existing session if it exists, other start new session
-  tmux2 attach -d || tmux2
-fi
+## run tmux if we are not currently in a tmux session
+#if [ -z "$TMUX" ]
+#then
+#  # attach to an existing session if it exists, other start new session
+#  tmux2 attach -d || tmux2
+#fi
