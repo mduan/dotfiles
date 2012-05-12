@@ -43,6 +43,10 @@ Bundle 'Shougo/neocomplcache'
 Bundle 'wincent/Command-T'
 " Surround content in brackets, parens, quotes, etc...
 Bundle 'tpope/vim-surround'
+" Improve working with multiple buffers
+Bundle 'fholgado/minibufexpl.vim'
+" Undo tree
+Bundle 'sjl/gundo.vim'
 " Improved bracket, parens, quotes, etc... matching
 Bundle 'vim-scripts/matchit.zip'
 " Few quick commands to switch between source/header files quickly
@@ -53,10 +57,12 @@ Bundle 'vim-scripts/python_match.vim'
 " Yankring for imrpoved copy/paste
 " Causes slow startup in vim, but seems fine in gvim
   " Bundle 'vim-scripts/YankRing.vim'
-" Undo tree
-Bundle 'sjl/gundo.vim'
 " Matching capability for Python using ]
 " This provides similar functionality to vim-scripts/python_match.vim
+" Needed for FuzzyFinder
+Bundle 'vim-scripts/L9'
+" Fuzzy matching for bookmarks, tabs, buffers, tabs, files, etc...
+Bundle 'vim-scripts/FuzzyFinder'
 Bundle 'mduan/python.vim'
 " Visually see marks
 " Requires vim compiles with +signs feature
@@ -64,8 +70,11 @@ Bundle 'mduan/python.vim'
 
 " Shortcuts for plugins ---------------------------------------
 nnoremap <F2> :NERDTreeToggle<CR>
-nnoremap <F3> :YRShow<CR>
+"nnoremap <F3> :YRShow<CR>
+" For some reason, this mapping refuses to work
+nnoremap <F3> :TMiniBufExplorer<CR>
 nnoremap <F5> :GundoToggle<CR>
+nnoremap <TAB> :MiniBufExplorer<CR>
 
 " Additional plugin setup --------------------------------------
 
@@ -92,6 +101,21 @@ let g:syntastic_mode_map = { 'mode': 'passive',
                            \ 'active_filetypes': [],
                            \ 'passive_filetypes': [] }
 
+" command-t ------------------------------------
+
+" Open files in new tabs
+" let g:CommandTAcceptSelectionMap = '<C-t>'
+" let g:CommandTAcceptSelectionTabMap = '<CR>'
+
+" minibufexplorer++ --------------------------
+let g:miniBufExplMapWindowNavVim = 1
+let g:miniBufExplMapWindowNavArrows = 1
+let g:miniBufExplMapCTabSwitchBufs = 1
+let g:miniBufExplModSelTarget = 1
+let g:miniBufExplorerMoreThanOne = 2
+let g:miniBufExplForceSyntaxEnable = 0
+let g:miniBufExplUseSingleClick = 1
+
 " -----------------------------------------------------------------
 
 " Use custom filetype indentation rules in .vim/ftplugin/<lang>.vim
@@ -105,10 +129,13 @@ set t_Co=256          " Needs to be set before settings colorscheme
 colorscheme desert    " Color scheme to use
 syntax on             " Enable syntax highlighting
 
+" Set highlighting colour for search
+highlight search ctermfg=yellow ctermbg=darkblue
+
 " General option sets
 set nocompatible      " Use vim defaults
 set laststatus=2      " Always show status line
-set scrolloff=5       " Number of lines to keep below when scrolling
+set scrolloff=999     " Number of lines to keep below when scrolling; large value maintains center
 set showcmd           " Display incomplete commands
 set hlsearch          " Highlight searches
 set incsearch         " Do incremental searches
@@ -125,10 +152,11 @@ set history=1000      " Remember more history
 set undolevels=5000   " Remember more undos
 set cmdheight=2       " Set command window height to reduce number of 'Press ENTER...' prompts
 set mouse=a           " Allow mouse to be used. Works on Ubuntu gvim AND terminal vim; not on Mac
-set autochdir         " Automatically change directories when switching windows
+set noautochdir       " Disable automatically changing directories when switching windows
 set tags=tags;/       " Look in the current dir and up tree towards root until a tag file is found
 set autoread          " Automatically reload changed files on disk (useful for git branch switching)
 set updatetime=500    " Affects freq that CursorHold autocommand is triggered, used by ShowMarks plugin
+"set switchbuf=usetab,newtab " Switch to existing tab if buffer is open, or create new one if not
 "set autowrite        " Automatically write buffers to file when switching to another buffer (i.e. :next, etc)
 "set nrformats=alpha  " Allow incrementing letters
 "set noignorecase     " Don't ignore case when searching
@@ -211,7 +239,8 @@ vnoremap > >gv
 " This mapping is causing strange behaviour with mouse clicking, so disable
 " for now
 " Use escape to cancel highlight
-" nnoremap <silent> <ESC> :noh<cr><ESC>
+" nnoremap <silent> <ESC> :noh<CR><ESC>
+nnoremap <silent> <C-c> :noh<CR><ESC>
 
 " Yank to end of line
 noremap Y y$
@@ -234,6 +263,7 @@ noremap <C-l> <C-w>l
 " :he /magic for more information
 nnoremap / /\v
 vnoremap / /\v
+cnoremap %s %s/\v
 
 " Mappings to resize split window
 nnoremap <C-n> <C-w><
@@ -241,6 +271,9 @@ nnoremap <C-m> <C-w>>
 nnoremap - <C-w>-
 nnoremap + <C-w>+
 
+" Folding commands
+nnoremap <space> za
+vnoremap <space> zf
 
 " Autocommands ----------------------------------------
 
@@ -301,16 +334,16 @@ if has('cscope')
     endif
   endfunction
 
-  noremap <C-c><C-c> :exe ':cs find c ' . expand('<cword>')<CR>
-  noremap <C-c><C-g> :exe ':cs find g ' . expand('<cword>')<CR>
-  noremap <C-c><C-d> :exe ':cs find d ' . expand('<cword>')<CR>
-  noremap <C-c><C-e> :exe ':cs find e (^\|[^a-zA-Z_])' . expand('<cword>') . '([^a-zA-Z_]\|$)'<CR>
-  noremap <C-c><C-a> :exe ':cs find e function ' . expand('<cword>') . '([^a-zA-Z_]\|$)'<CR>
-  noremap <C-c><C-b> :exe ':cs find s ' . expand('<cword>')<CR>
-  noremap <C-c><C-f> :cs find f<SPACE>
-  noremap <C-c><C-t> :exe ':cs find t ' . expand('<cword>')<CR>
-  noremap <C-c><C-r> :call <SID>ReloadCscopeDb()<CR>
-  noremap <C-c><C-x> :call <SID>ToggleCscopeQuickfix()<CR>
+  "noremap <C-c><C-c> :exe ':cs find c ' . expand('<cword>')<CR>
+  "noremap <C-c><C-g> :exe ':cs find g ' . expand('<cword>')<CR>
+  "noremap <C-c><C-d> :exe ':cs find d ' . expand('<cword>')<CR>
+  "noremap <C-c><C-e> :exe ':cs find e (^\|[^a-zA-Z_])' . expand('<cword>') . '([^a-zA-Z_]\|$)'<CR>
+  "noremap <C-c><C-a> :exe ':cs find e function ' . expand('<cword>') . '([^a-zA-Z_]\|$)'<CR>
+  "noremap <C-c><C-b> :exe ':cs find s ' . expand('<cword>')<CR>
+  "noremap <C-c><C-f> :cs find f<SPACE>
+  "noremap <C-c><C-t> :exe ':cs find t ' . expand('<cword>')<CR>
+  "noremap <C-c><C-r> :call <SID>ReloadCscopeDb()<CR>
+  "noremap <C-c><C-x> :call <SID>ToggleCscopeQuickfix()<CR>
 endif
 
 " Platform specific configuration ------------------------------------
@@ -362,12 +395,10 @@ elseif g:SYSTEM == 'win'
   nnoremap <silent> gp :call GetClip()<CR>
 
   " Make backspace work in Windows
-  if g:SYSTEM == 'win'
-    set nocp
-    map <BS> ^H
-    set backspace=indent,eol,start
-    fixdel
-  endif
+  set nocp
+  map <BS> ^H
+  set backspace=indent,eol,start
+  fixdel
 endif
 
 " Global functions -------------------------------------------------------
