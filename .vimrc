@@ -54,7 +54,7 @@ Bundle 'vim-scripts/a.vim'
 " Matching capability for Python using %
 " This provides similar functionality to mduan/python.vim
 Bundle 'vim-scripts/python_match.vim'
-" Yankring for imrpoved copy/paste
+" Yankring for improved copy/paste
 " Causes slow startup in vim, but seems fine in gvim
   " Bundle 'vim-scripts/YankRing.vim'
 " Matching capability for Python using ]
