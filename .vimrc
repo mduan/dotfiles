@@ -135,7 +135,8 @@ highlight search ctermfg=yellow ctermbg=darkblue
 " General option sets
 set nocompatible      " Use vim defaults
 set laststatus=2      " Always show status line
-set scrolloff=999     " Number of lines to keep below when scrolling; large value maintains center
+"set scrolloff=999     " Number of lines to keep below when scrolling; large value maintains center
+set scrolloff=5
 set showcmd           " Display incomplete commands
 set hlsearch          " Highlight searches
 set incsearch         " Do incremental searches
@@ -263,7 +264,9 @@ noremap <C-l> <C-w>l
 " :he /magic for more information
 nnoremap / /\v
 vnoremap / /\v
-cnoremap %s %s/\v
+nnoremap ? ?\v
+vnoremap ? ?\v
+cnoremap %s/ %s/\v
 
 " Mappings to resize split window
 nnoremap <C-n> <C-w><
@@ -272,8 +275,8 @@ nnoremap - <C-w>-
 nnoremap + <C-w>+
 
 " Folding commands
-nnoremap <space> za
-vnoremap <space> zf
+nnoremap <leader><space> za
+vnoremap <leader><space> zf
 
 " Autocommands ----------------------------------------
 
