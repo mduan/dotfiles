@@ -146,6 +146,7 @@ alias grep="grep --color=auto"
 alias gvim='gvim -geom 82x35'
 alias hist="grep '$1' /home/mack/.zsh_history"
 alias mem='free -m'
+alias s='git status'
 alias tmux2='tmux -2 attach -d || tmux -2'
 #alias trash='trash-put'
 #alias trash-restore='restore-trash'
