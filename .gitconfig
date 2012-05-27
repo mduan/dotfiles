@@ -1,9 +1,14 @@
+[core]
+  editor = /usr/bin/vim
+  excludesfile = ~/.gitignore_global
+
 [diff]
 	tool = vimdiff
 [alias]
 	unstage = reset HEAD --
 	last = log -1 HEAD
-	graph = "log --graph --oneline --full-history --color --branches --decorate --all"
+  #graph = "log --graph --oneline --full-history --color --branches --decorate --all"
+  graph = log --graph --decorate --oneline --pretty=format:"%h%x20%Cgreen%d%x20%Cred%an%x20%Cblue%ad%x20%Creset%s" --all --full-history --date=short
 
 [color]
 	status = auto
@@ -14,3 +19,13 @@
 [user]
 	name = mduan
 	email = duan.mack@gmail.com
+
+[merge]
+  tool = vimdiff
+  stat = true
+
+[diff]
+  # Use mnemonic prefixes (index, work tree, commit, object) instead of the standard a and b notation
+	mnemonicprefix = true
+  # Detect renames as well as copies
+	renames = copies
