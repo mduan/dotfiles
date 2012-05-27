@@ -15,6 +15,7 @@ read -p "This script will overwrite dotfiles in your home directory. Continue? [
 # fi
 
 sudo apt-get install build-essential
+sudo apt-get install x11-xserver-utils # install xmodmap
 
 sudo apt-get install zsh
 sudo chsh -s /bin/zsh
