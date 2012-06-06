@@ -18,7 +18,7 @@ sudo apt-get install build-essential
 sudo apt-get install x11-xserver-utils # install xmodmap
 
 sudo apt-get install zsh
-sudo chsh -s /bin/zsh
+chsh -s /bin/zsh
 
 sudo apt-get install git-core
 sudo apt-get install tmux
