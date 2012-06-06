@@ -162,7 +162,7 @@ function pwdc()  {
 
 function take() { mkdir -p $1 && cd $1 } # mkdir and cd
 
-source /etc/profile.d/autojump.zsh
+source /usr/share/autojump/autojump.zsh
 
 if [ -r ~/.zshrc.local ]
 then
