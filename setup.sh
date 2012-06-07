@@ -21,8 +21,9 @@ sudo apt-get install zsh
 chsh -s /bin/zsh
 
 sudo apt-get install git-core
+# TODO (mack): should manually compile tmux-1.5 from source, since different versions support different commands
 sudo apt-get install tmux
-sudo apt-get install vim
+sudo apt-get install vim-gnome
 sudo apt-get install ack-grep
 
 # TODO: should be doing this with an array
@@ -32,7 +33,7 @@ sh -c 'mkdir -p ~/.zsh && rm -rf ~/.zsh/git-prompt && git clone https://github.c
 
 sudo apt-get install ruby
 sudo apt-get install ruby-dev # need it for mkmf needed by Command-T
-sh -c 'rm -rf ~/.vim/bundle/vundle && git clone http://github.com/gmarik/vundle.git ~/.vim/bundle/vundle/ && vim -c "silent BundleInstall" -c "silent helptags ~/.vim/bundle/vundle/doc" -c "silent qa!" && cd ~/.vim/bundle/Command-T/ruby/command-t && ruby extconf.rb && make && cd -'
+sh -c 'rm -rf ~/.vim/bundle/vundle && git clone http://github.com/mduan/vundle.git ~/.vim/bundle/vundle/ && vim -c "silent BundleInstall" -c "silent helptags ~/.vim/bundle/vundle/doc" -c "silent qa!" && cd ~/.vim/bundle/Command-T/ruby/command-t && ruby extconf.rb && make && cd -'
 
 sudo apt-get install autojump
 #sh -c 'rm -rf /tmp/git_autojump/ && cd /tmp && wget https://github.com/downloads/joelthelion/autojump/autojump_v20.tar.gz && cd /tmp/autojump_v20 && chmod a+x install.sh && ./install.sh --local --zsh'
