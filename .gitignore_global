@@ -1,11 +1,11 @@
+.arc/
+.svn/
 .DS_Store?
 .DS_Store
-*.pyc
-.svn
 Thumbs.db
 Icon?
+*.pyc
 *.swp
-tags
 *.class
 *.out
-.arc/
+*.o
