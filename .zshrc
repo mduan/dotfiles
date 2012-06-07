@@ -40,6 +40,9 @@ setopt SH_WORD_SPLIT
 setopt nohup
 setopt share_history
 
+# bindkey -e  # support emac shortcuts i.e. <C-A>, <C-E>, <C-W>
+set -o vi  # set readline in Vi mode
+
 # visual settings -----------------
 
 # color setup for 'ls'
@@ -53,8 +56,6 @@ PROMPT='%{$fg[yellow]%}[%1~]%{$reset_color%} % %# '
 #function precmd() { print -Pn "\e]2;[%~]\a" }
 function precmd() { print -Pn "\e]2;%n@%m [%~]\a" }
 
-# bindkey -e  # support emac shortcuts i.e. <C-A>, <C-E>, <C-W>
-set -o vi  # set readline in Vi mode
 # TODO: move prompt to line below
 # set up prompt to display vi mode (NORMAL/INSERT)
 function zle-line-init zle-keymap-select {
@@ -65,6 +66,11 @@ function zle-line-init zle-keymap-select {
 }
 zle -N zle-line-init
 zle -N zle-keymap-select
+
+# Faster git completion
+__git_files () {
+  _wanted files expl 'local files' _files
+}
 
 # completions -------------------------
 
