@@ -21,7 +21,7 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 " Let Vundle manage Vundle; required
-Bundle 'gmarik/vundle'
+Bundle 'mduan/vundle'
 
 " Bundles to manage -----------------
 
@@ -67,6 +67,8 @@ Bundle 'mduan/python.vim'
 " Visually see marks
 " Requires vim compiles with +signs feature
   " Bundle 'mduan/ShowMarks'
+
+Bundle "kevinw/pyflakes-vim"
 
 " Shortcuts for plugins ---------------------------------------
 nnoremap <F2> :NERDTreeToggle<CR>

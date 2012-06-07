@@ -23,6 +23,7 @@ chsh -s /bin/zsh
 sudo apt-get install git-core
 # TODO (mack): should manually compile tmux-1.5 from source, since different versions support different commands
 sudo apt-get install tmux
+# version of vim compiled w/ a gnome2 gui & support for scripting w/ perl, python, ruby, and tcl
 sudo apt-get install vim-gnome
 sudo apt-get install ack-grep
 
