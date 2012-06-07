@@ -297,6 +297,8 @@ autocmd InsertEnter * let w:ews2=matchadd('ExtraWhitespace', '\s\+\%#\@<!$', -1)
 autocmd InsertLeave * let w:ews3=matchadd('ExtraWhitespace', '\s\+$', -1)
 autocmd BufWinLeave * call clearmatches()
 
+highlight SpellBad term=reverse ctermbg=darkGray
+
 " CScope options ------------------------------------------------
 
 " Enable cscope functionality for autocomplete if available
