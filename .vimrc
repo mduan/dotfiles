@@ -181,6 +181,9 @@ set expandtab
 " This will confuse Latex-Suite. Set your grep program to always generate a file-name.
 set grepprg=grep\ -nH\ $*
 
+" Set filetypes to ignore
+set wildignore=*.o,*~,*.pyc,*.out,*.class,*.swp
+
 " Remaps ------------------------------------------------------
 
 " Swap ; and :
