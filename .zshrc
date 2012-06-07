@@ -151,6 +151,7 @@ alias tmux2='tmux -2 attach -d || tmux -2'
 #alias trash-restore='restore-trash'
 
 alias d='git diff'
+alias g='git graph'
 alias s='git status'
 
 # pwd, but collapse $HOME to ~
