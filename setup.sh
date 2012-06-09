@@ -21,8 +21,13 @@ sudo apt-get install --force-yes zsh
 chsh -s /bin/zsh
 
 sudo apt-get install --force-yes git-core
-# TODO (mack): should manually compile tmux-1.5 from source, since different versions support different commands
-sudo apt-get install --force-yes tmux
+
+#sudo apt-get install --force-yes tmux
+sudo apt-get install --force-yes --yes libevent-dev
+sudo apt-get install --force-yes --yes libncurses5-dev
+sh -c 'sudo apt-get --force-yes --yes remove tmux && cd /tmp && wget http://downloads.sourceforge.net/project/tmux/tmux/tmux-1.5/tmux-1.5.tar.gz && rm -rf /tmp/tmux-1.5 && tar xzf tmux-1.5.tar.gz && cd - && cd /tmp/tmux-1.5 && ./configure && make && sudo make install && cd -'
+sudo apt-get install --force-yes --yes xclip
+
 # version of vim compiled w/ a gnome2 gui & support for scripting w/ perl, python, ruby, and tcl
 sudo apt-get install --force-yes vim-gnome
 sudo apt-get install --force-yes ack-grep
