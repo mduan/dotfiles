@@ -14,29 +14,29 @@ read -p "This script will overwrite dotfiles in your home directory. Continue? [
 #   export TERM='xterm-color'
 # fi
 
-sudo apt-get install build-essential
-sudo apt-get install x11-xserver-utils # install xmodmap
+sudo apt-get install --force-yes build-essential
+sudo apt-get install --force-yes x11-xserver-utils # install xmodmap
 
-sudo apt-get install zsh
+sudo apt-get install --force-yes zsh
 chsh -s /bin/zsh
 
-sudo apt-get install git-core
+sudo apt-get install --force-yes git-core
 # TODO (mack): should manually compile tmux-1.5 from source, since different versions support different commands
-sudo apt-get install tmux
+sudo apt-get install --force-yes tmux
 # version of vim compiled w/ a gnome2 gui & support for scripting w/ perl, python, ruby, and tcl
-sudo apt-get install vim-gnome
-sudo apt-get install ack-grep
+sudo apt-get install --force-yes vim-gnome
+sudo apt-get install --force-yes ack-grep
 
 # TODO: should be doing this with an array
 sh -c 'rm -rf ~/.dotfiles/ && git clone git://github.com/mduan/dotfiles.git ~/.dotfiles/ && ln -sf ~/.dotfiles/.zshrc ~/.zshrc && ln -sf ~/.dotfiles/.vimrc ~/.vimrc && ln -sf ~/.dotfiles/.gvimrc ~/.gvimrc && rm -rf ~/.vim && ln -sf ~/.dotfiles/.vim ~/.vim && ln -sf ~/.dotfiles/.gitconfig ~/.gitconfig && ln -sf ~/.dotfiles/.gitignore_global ~/.gitignore_global && ln -sf ~/.dotfiles/.ackrc ~/.ackrc && ln -sf ~/.dotfiles/.tmux.conf ~/.tmux.conf'
 
 sh -c 'mkdir -p ~/.zsh && rm -rf ~/.zsh/git-prompt && git clone https://github.com/olivierverdier/zsh-git-prompt.git ~/.zsh/git-prompt'
 
-sudo apt-get install ruby
-sudo apt-get install ruby-dev # need it for mkmf needed by Command-T
+sudo apt-get install --force-yes ruby
+sudo apt-get install --force-yes ruby-dev # need it for mkmf needed by Command-T
 sh -c 'rm -rf ~/.vim/bundle/vundle && git clone http://github.com/mduan/vundle.git ~/.vim/bundle/vundle/ && vim -c "silent BundleInstall" -c "silent helptags ~/.vim/bundle/vundle/doc" -c "silent qa!" && cd ~/.vim/bundle/Command-T/ruby/command-t && ruby extconf.rb && make && cd -'
 
-sudo apt-get install autojump
+sudo apt-get install --force-yes autojump
 #sh -c 'rm -rf /tmp/git_autojump/ && cd /tmp && wget https://github.com/downloads/joelthelion/autojump/autojump_v20.tar.gz && cd /tmp/autojump_v20 && chmod a+x install.sh && ./install.sh --local --zsh'
 
 # any additional packages that might be worth installing
