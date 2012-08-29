@@ -44,6 +44,9 @@ sh -c 'rm -rf ~/.vim/bundle/vundle && git clone http://github.com/mduan/vundle.g
 sudo apt-get install --force-yes --yes autojump
 #sh -c 'rm -rf /tmp/git_autojump/ && cd /tmp && wget https://github.com/downloads/joelthelion/autojump/autojump_v20.tar.gz && cd /tmp/autojump_v20 && chmod a+x install.sh && ./install.sh --local --zsh'
 
+sudo apt-get install --force-yes --yes python-pip python-dev
+sudo pip install virtualenv virtualenvwrapper
+
 # any additional packages that might be worth installing
 #sudo apt-get install vim-gnome; # contains more extensions than vim package (i.e. clipboard support)
 # sudo apt-get install trash-cli; # use trash rather than rm to move to trash bin
