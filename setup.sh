@@ -7,6 +7,10 @@ set -e
 read -p "This script will overwrite dotfiles in your home directory. Continue? [y/n]? " REPLY
 [[ "$REPLY" != "y" ]] && exit
 
+SCRIPT=`readlink -f $0`
+# Absolute path this script is in, thus /home/user/bin
+DOTFILES_PATH=`dirname $SCRIPT`
+
 # TODO: manually
 # if [ -e /usr/share/terminfo/x/xterm-256color ]; then
 #   export TERM='xterm-256color'
@@ -33,7 +37,7 @@ sudo apt-get install --force-yes --yes vim-gnome
 sudo apt-get install --force-yes --yes ack-grep
 
 # TODO: should be doing this with an array
-sh -c 'rm -rf ~/.dotfiles/ && git clone git://github.com/mduan/dotfiles.git ~/.dotfiles/ && ln -sf ~/.dotfiles/.zshrc ~/.zshrc && ln -sf ~/.dotfiles/.vimrc ~/.vimrc && ln -sf ~/.dotfiles/.gvimrc ~/.gvimrc && rm -rf ~/.vim && ln -sf ~/.dotfiles/.vim ~/.vim && ln -sf ~/.dotfiles/.gitconfig ~/.gitconfig && ln -sf ~/.dotfiles/.gitignore_global ~/.gitignore_global && ln -sf ~/.dotfiles/.ackrc ~/.ackrc && ln -sf ~/.dotfiles/.tmux.conf ~/.tmux.conf'
+sh -c "ln -sf $DOTFILES_PATH/.zshrc ~/.zshrc && ln -sf $DOTFILES_PATH/.vimrc ~/.vimrc && ln -sf $DOTFILES_PATH/.gvimrc ~/.gvimrc && rm -rf ~/.vim && ln -sf $DOTFILES_PATH/.vim ~/.vim && ln -sf $DOTFILES_PATH/.gitconfig ~/.gitconfig && ln -sf $DOTFILES_PATH/.gitignore_global ~/.gitignore_global && ln -sf $DOTFILES_PATH/.ackrc ~/.ackrc && ln -sf $DOTFILES_PATH/.tmux.conf ~/.tmux.conf"
 
 sh -c 'mkdir -p ~/.zsh && rm -rf ~/.zsh/git-prompt && git clone https://github.com/olivierverdier/zsh-git-prompt.git ~/.zsh/git-prompt'
 
