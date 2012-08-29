@@ -44,7 +44,7 @@ Bundle 'wincent/Command-T'
 " Surround content in brackets, parens, quotes, etc...
 Bundle 'tpope/vim-surround'
 " Improve working with multiple buffers
-Bundle 'fholgado/minibufexpl.vim'
+  " Bundle 'fholgado/minibufexpl.vim'
 " Undo tree
 Bundle 'sjl/gundo.vim'
 " Improved bracket, parens, quotes, etc... matching
@@ -68,14 +68,17 @@ Bundle 'mduan/python.vim'
 " Requires vim compiles with +signs feature
   " Bundle 'mduan/ShowMarks'
 
+" Tools for helping w/ LaTex
+Bundle 'vim-scripts/LaTeX-Suite-aka-Vim-LaTeX'
+
 Bundle "kevinw/pyflakes-vim"
 
 " Shortcuts for plugins ---------------------------------------
 nnoremap <F2> :NERDTreeToggle<CR>
 "nnoremap <F3> :YRShow<CR>
 " For some reason, this mapping refuses to work
-nnoremap <F3> :TMiniBufExplorer<CR>
-nnoremap <F5> :GundoToggle<CR>
+" nnoremap <F3> :TMiniBufExplorer<CR>
+nnoremap <F4> :GundoToggle<CR>
 nnoremap <TAB> :MiniBufExplorer<CR>
 
 " Additional plugin setup --------------------------------------
@@ -103,6 +106,12 @@ let g:syntastic_mode_map = { 'mode': 'passive',
                            \ 'active_filetypes': [],
                            \ 'passive_filetypes': [] }
 
+" vim-latex ----------------------
+let g:tex_flavor='latex'
+let g:Tex_DefaultTargetFormat = 'pdf'
+let g:Tex_CompileRule_pdf = 'latexmk -pdf -halt-on-error -f $*'
+let g:Tex_CompileRule_pdf = 'pdflatex $*'
+
 " command-t ------------------------------------
 
 " Open files in new tabs
@@ -110,13 +119,13 @@ let g:syntastic_mode_map = { 'mode': 'passive',
 " let g:CommandTAcceptSelectionTabMap = '<CR>'
 
 " minibufexplorer++ --------------------------
-let g:miniBufExplMapWindowNavVim = 1
-let g:miniBufExplMapWindowNavArrows = 1
-let g:miniBufExplMapCTabSwitchBufs = 1
-let g:miniBufExplModSelTarget = 1
-let g:miniBufExplorerMoreThanOne = 2
-let g:miniBufExplForceSyntaxEnable = 0
-let g:miniBufExplUseSingleClick = 1
+" let g:miniBufExplMapWindowNavVim = 1
+" let g:miniBufExplMapWindowNavArrows = 1
+" let g:miniBufExplMapCTabSwitchBufs = 1
+" let g:miniBufExplModSelTarget = 1
+" let g:miniBufExplorerMoreThanOne = 2
+" let g:miniBufExplForceSyntaxEnable = 0
+" let g:miniBufExplUseSingleClick = 1
 
 " -----------------------------------------------------------------
 
@@ -260,10 +269,10 @@ cnoremap w!! w !sudo tee % >/dev/null
 
 " Move between split windows more easily
 " noremap <C-j> <C-w>j<C-w>_
-noremap <C-h> <C-w>h
-noremap <C-j> <C-w>j
-noremap <C-k> <C-w>k
-noremap <C-l> <C-w>l
+" noremap <C-h> <C-w>h
+" noremap <C-j> <C-w>j
+" noremap <C-k> <C-w>k
+" noremap <C-l> <C-w>l
 
 " Turn on 'very magic' regex status by default for searches.
 " :he /magic for more information
