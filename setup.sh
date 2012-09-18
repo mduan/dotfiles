@@ -36,8 +36,9 @@ sudo apt-get install --force-yes --yes xclip
 sudo apt-get install --force-yes --yes vim-gnome
 sudo apt-get install --force-yes --yes ack-grep
 
+mkdir -p ~/bin
 # TODO: should be doing this with an array
-sh -c "ln -sf $DOTFILES_PATH/.zshrc ~/.zshrc && ln -sf $DOTFILES_PATH/.vimrc ~/.vimrc && ln -sf $DOTFILES_PATH/.gvimrc ~/.gvimrc && rm -rf ~/.vim && ln -sf $DOTFILES_PATH/.vim ~/.vim && ln -sf $DOTFILES_PATH/.gitconfig ~/.gitconfig && ln -sf $DOTFILES_PATH/.gitignore_global ~/.gitignore_global && ln -sf $DOTFILES_PATH/.ackrc ~/.ackrc && ln -sf $DOTFILES_PATH/.tmux.conf ~/.tmux.conf"
+sh -c "ln -sf $DOTFILES_PATH/.zshrc ~/.zshrc && ln -sf $DOTFILES_PATH/.vimrc ~/.vimrc && ln -sf $DOTFILES_PATH/.gvimrc ~/.gvimrc && rm -rf ~/.vim && ln -sf $DOTFILES_PATH/.vim ~/.vim && ln -sf $DOTFILES_PATH/.gitconfig ~/.gitconfig && ln -sf $DOTFILES_PATH/.gitignore_global ~/.gitignore_global && ln -sf $DOTFILES_PATH/.ackrc ~/.ackrc && ln -sf $DOTFILES_PATH/.tmux.conf ~/.tmux.conf && ln -sf $DOTFILES_PATH/tmux_renum.sh ~/bin/tmux_renum.sh"
 
 sh -c 'mkdir -p ~/.zsh && rm -rf ~/.zsh/git-prompt && git clone https://github.com/olivierverdier/zsh-git-prompt.git ~/.zsh/git-prompt'
 
