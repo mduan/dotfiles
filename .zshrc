@@ -23,6 +23,10 @@ export HISTFILE=~/.zsh_history
 export HISTSIZE=50000
 export SAVEHIST=50000
 
+export WORKON_HOME=$HOME/.virtualenvs
+mkdir -p ${WORKON_HOME}
+source /usr/local/bin/virtualenvwrapper.sh
+
 ###########################################################
 # Options for Zsh
 
