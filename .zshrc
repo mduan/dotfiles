@@ -52,6 +52,8 @@ set -o vi  # set readline in Vi mode
 # color setup for 'ls'
 eval `dircolors -b`
 
+# TODO(mack): completely remove git-prompt
+
 source ~/.zsh/git-prompt/zshrc.sh
 # prompt for git repos
 #PROMPT='%{$fg[green]%}%n%{$reset_color%}@%{$fg[cyan]%}%m%{$reset_color%}:%{$fg[yellow]%}%~%{$reset_color%} % %# '
@@ -60,17 +62,17 @@ PROMPT='%{$fg[yellow]%}[%1~]%{$reset_color%} % %# '
 #function precmd() { print -Pn "\e]2;[%~]\a" }
 function precmd() { print -Pn "\e]2;%n@%m [%~]\a" }
 
-# TODO: move prompt to line below
-# set up prompt to display vi mode (NORMAL/INSERT)
-function zle-line-init zle-keymap-select {
-  RPS1="$(git_super_status) ${${KEYMAP/vicmd/[N]}/(main|viins)/[I]}"
-  RPS2=$RPS1
-  ZSH_THEME_GIT_PROMPT_NOCACHE=true
-  zle reset-prompt
-}
-zle -N zle-line-init
-zle -N zle-keymap-select
-
+## TODO: move prompt to line below
+## set up prompt to display vi mode (NORMAL/INSERT)
+#function zle-line-init zle-keymap-select {
+#  RPS1="$(git_super_status) ${${KEYMAP/vicmd/[N]}/(main|viins)/[I]}"
+#  RPS2=$RPS1
+#  ZSH_THEME_GIT_PROMPT_NOCACHE=true
+#  zle reset-prompt
+#}
+#zle -N zle-line-init
+#zle -N zle-keymap-select
+#
 # Faster git completion
 __git_files () {
   _wanted files expl 'local files' _files
@@ -173,7 +175,7 @@ function pwdc()  {
 
 function take() { mkdir -p $1 && cd $1 } # mkdir and cd
 
-source /usr/share/autojump/autojump.zsh
+ source /usr/share/autojump/autojump.zsh
 
 if [ -r ~/.zshrc.local ]
 then
