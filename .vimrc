@@ -217,8 +217,8 @@ nnoremap G Gzz
 
 " let [jk] go down and up by display lines instead of real lines. Let g[jk]
 " do what [jk] normally does
-nnoremap k gkzz
-nnoremap j gjzz
+" nnoremap k gkzz
+" nnoremap j gjzz
 nnoremap gk kzz
 nnoremap gj jzz
 
@@ -244,7 +244,7 @@ inoremap <C-BS> <C-W>
 
 " Add entry to undo history for each new line while in insert mode
 inoremap <cr> <c-g>u<cr>
-noremap <space> i<space><esc><right>
+" noremap <space> i<space><esc><right>
 noremap <cr> o<esc>
 
 " Visual-mode indentation shifting: don't de-select after shift, keep selected.
