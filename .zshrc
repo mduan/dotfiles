@@ -1,15 +1,5 @@
 source /etc/profile
 
-# map Caps Lock to Esc
-xmodmap -e "clear lock";
-xmodmap -e "keycode 66 = Escape";
-xmodmap -e "keycode 108 = Mode_switch";
-# map <A-[h,j,k,l]> to navigation
-xmodmap -e "keysym h = h H Left";
-xmodmap -e "keysym j = j J Down";
-xmodmap -e "keysym k = k K Up";
-xmodmap -e "keysym l = l L Right";
-
 # type a directory's name to cd to it
 compctl -/ cd
 
@@ -25,7 +15,7 @@ export SAVEHIST=50000
 
 export WORKON_HOME=$HOME/.virtualenvs
 mkdir -p ${WORKON_HOME}
-source /usr/local/bin/virtualenvwrapper.sh
+#source /usr/local/bin/virtualenvwrapper.sh
 
 ###########################################################
 # Options for Zsh
@@ -50,17 +40,11 @@ set -o vi  # set readline in Vi mode
 # visual settings -----------------
 
 # color setup for 'ls'
-eval `dircolors -b`
-
-# TODO(mack): completely remove git-prompt
-
-source ~/.zsh/git-prompt/zshrc.sh
-# prompt for git repos
-#PROMPT='%{$fg[green]%}%n%{$reset_color%}@%{$fg[cyan]%}%m%{$reset_color%}:%{$fg[yellow]%}%~%{$reset_color%} % %# '
-PROMPT='%{$fg[yellow]%}[%1~]%{$reset_color%} % %# '
+# Linux specific
+#eval `dircolors -b`
 
 #function precmd() { print -Pn "\e]2;[%~]\a" }
-function precmd() { print -Pn "\e]2;%n@%m [%~]\a" }
+#function precmd() { print -Pn "\e]2;%n@%m [%~]\a" }
 
 ## TODO: move prompt to line below
 ## set up prompt to display vi mode (NORMAL/INSERT)
@@ -72,7 +56,30 @@ function precmd() { print -Pn "\e]2;%n@%m [%~]\a" }
 #}
 #zle -N zle-line-init
 #zle -N zle-keymap-select
-#
+
+function virtualenv_info {
+  [ $VIRTUAL_ENV ] && echo '('`basename $VIRTUAL_ENV`') '
+}
+
+function box_name {
+  [ -f ~/.box-name ] && cat ~/.box-name || hostname -s
+}
+
+PROMPT='
+%{$fg[magenta]%}%n%{$reset_color%} at %{$fg[yellow]%}$(box_name)%{$reset_color%} in %{$
+fg_bold[green]%}${PWD/#$HOME/~}%{$reset_color%}$(git_prompt_info)
+$(virtualenv_info)%(?,,%{${fg_bold[blue]}%}[%?]%{$reset_color%} )$ '
+
+ZSH_THEME_GIT_PROMPT_PREFIX=" on %{$fg[magenta]%}"
+ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[green]%}!"
+ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg[green]%}?"
+ZSH_THEME_GIT_PROMPT_CLEAN=""
+
+local return_status="%{$fg[red]%}%(?..⤬)%{$reset_color%}"
+RPROMPT='${return_status}%{$reset_color%}'
+
+
 # Faster git completion
 __git_files () {
   _wanted files expl 'local files' _files
@@ -125,7 +132,7 @@ bindkey '^[[C' forward-char
 # completion in the middle of a line
 bindkey '^i' expand-or-complete-prefix
 
-##################################################################
+###################################################################
 
 # Set up auto extension stuff
 #alias -s org=$BROWSER
@@ -148,7 +155,7 @@ bindkey '^i' expand-or-complete-prefix
 #alias dir='ls -1'
 alias f='find |grep'
 alias ll='ls -al'
-alias ls='ls --color=auto -F'
+alias ls='ls -G -F'
 alias lsa='ls -ld .*'
 alias lsd='ls -ld *(-/DN)'
 alias go='gnome-open'
@@ -175,7 +182,7 @@ function pwdc()  {
 
 function take() { mkdir -p $1 && cd $1 } # mkdir and cd
 
- source /usr/share/autojump/autojump.zsh
+#source /usr/share/autojump/autojump.zsh
 
 if [ -r ~/.zshrc.local ]
 then

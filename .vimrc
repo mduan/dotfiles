@@ -36,11 +36,12 @@ Bundle 'scrooloose/syntastic'
 " Improved statusline
 Bundle 'Lokaltog/vim-powerline'
 " Improved autocompletion
-Bundle 'Shougo/neocomplcache'
+" Bundle 'Shougo/neocomplcache'
 " Improved file finding
 " Additional installation instuctions at https://github.com/wincent/Command-T
 " being performed by setup.sh
-Bundle 'wincent/Command-T'
+" Bundle 'wincent/Command-T'
+Bundle 'kien/ctrlp.vim'
 " Surround content in brackets, parens, quotes, etc...
 Bundle 'tpope/vim-surround'
 " Improve working with multiple buffers
@@ -69,9 +70,10 @@ Bundle 'mduan/python.vim'
   " Bundle 'mduan/ShowMarks'
 
 " Tools for helping w/ LaTex
-Bundle 'vim-scripts/LaTeX-Suite-aka-Vim-LaTeX'
-
+" Bundle 'vim-scripts/LaTeX-Suite-aka-Vim-LaTeX'
 Bundle "kevinw/pyflakes-vim"
+Bundle "altercation/vim-colors-solarized"
+
 
 " Shortcuts for plugins ---------------------------------------
 nnoremap <F2> :NERDTreeToggle<CR>
@@ -80,6 +82,7 @@ nnoremap <F2> :NERDTreeToggle<CR>
 " nnoremap <F3> :TMiniBufExplorer<CR>
 nnoremap <F4> :GundoToggle<CR>
 nnoremap <TAB> :MiniBufExplorer<CR>
+nnoremap <leader>t :CtrlP<CR>
 
 " Additional plugin setup --------------------------------------
 
@@ -137,7 +140,8 @@ filetype plugin indent on
 set t_Co=256          " Needs to be set before settings colorscheme
 
 " Basic config
-colorscheme desert    " Color scheme to use
+set background=dark
+colorscheme solarized " Color scheme to use
 syntax on             " Enable syntax highlighting
 
 " Set highlighting colour for search
@@ -192,6 +196,11 @@ set grepprg=grep\ -nH\ $*
 
 " Set filetypes to ignore
 set wildignore=*.o,*~,*.pyc,*.out,*.class,*.swp
+
+" Needed on Mac
+set clipboard=unnamed
+" Needed on Mac with custom homebrew vim
+set backspace=indent,eol,start
 
 " Remaps ------------------------------------------------------
 
@@ -292,6 +301,8 @@ nnoremap + <C-w>+
 nnoremap <leader><space> za
 vnoremap <leader><space> zf
 
+nnoremap <leader>p <C-^>
+
 " Autocommands ----------------------------------------
 
 " this autocommand jumps to the last known position in a file just afer opening it
@@ -309,7 +320,7 @@ autocmd InsertEnter * let w:ews2=matchadd('ExtraWhitespace', '\s\+\%#\@<!$', -1)
 autocmd InsertLeave * let w:ews3=matchadd('ExtraWhitespace', '\s\+$', -1)
 autocmd BufWinLeave * call clearmatches()
 
-highlight SpellBad term=reverse ctermbg=darkGray
+highlight SpellBad term=reverse ctermbg=lightGray
 
 " CScope options ------------------------------------------------
 
