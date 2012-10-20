@@ -13,6 +13,10 @@ export HISTFILE=~/.zsh_history
 export HISTSIZE=50000
 export SAVEHIST=50000
 
+export WORKON_HOME=$HOME/.virtualenvs
+mkdir -p ${WORKON_HOME}
+#source /usr/local/bin/virtualenvwrapper.sh
+
 ###########################################################
 # Options for Zsh
 
@@ -125,7 +129,7 @@ bindkey '^[[C' forward-char
 # completion in the middle of a line
 bindkey '^i' expand-or-complete-prefix
 
-##################################################################
+###################################################################
 
 # Set up auto extension stuff
 #alias -s org=$BROWSER
@@ -148,7 +152,7 @@ bindkey '^i' expand-or-complete-prefix
 #alias dir='ls -1'
 alias f='find |grep'
 alias ll='ls -al'
-alias ls='ls --color=auto -F'
+alias ls='ls -G -F'
 alias lsa='ls -ld .*'
 alias lsd='ls -ld *(-/DN)'
 alias go='gnome-open'
@@ -175,7 +179,7 @@ function pwdc()  {
 
 function take() { mkdir -p $1 && cd $1 } # mkdir and cd
 
-[[ -s ~/.autojump/etc/profile.d/autojump.zsh ]] && source ~/.autojump/etc/profile.d/autojump.zsh
+# [[ -s ~/.autojump/etc/profile.d/autojump.zsh ]] && source ~/.autojump/etc/profile.d/autojump.zsh
 
 if [ -r ~/.zshrc.local ]
 then
