@@ -40,7 +40,8 @@ Bundle 'Shougo/neocomplcache'
 " Improved file finding
 " Additional installation instuctions at https://github.com/wincent/Command-T
 " being performed by setup.sh
-Bundle 'wincent/Command-T'
+" Bundle 'wincent/Command-T'
+Bundle 'kien/ctrlp.vim'
 " Surround content in brackets, parens, quotes, etc...
 Bundle 'tpope/vim-surround'
 " Improve working with multiple buffers
@@ -69,7 +70,7 @@ Bundle 'mduan/python.vim'
   " Bundle 'mduan/ShowMarks'
 
 " Tools for helping w/ LaTex
-Bundle 'vim-scripts/LaTeX-Suite-aka-Vim-LaTeX'
+" Bundle 'vim-scripts/LaTeX-Suite-aka-Vim-LaTeX'
 
 Bundle "kevinw/pyflakes-vim"
 
@@ -80,6 +81,8 @@ nnoremap <F2> :NERDTreeToggle<CR>
 " nnoremap <F3> :TMiniBufExplorer<CR>
 nnoremap <F4> :GundoToggle<CR>
 nnoremap <TAB> :MiniBufExplorer<CR>
+nnoremap <leader>r :CtrlP<CR>
+nnoremap <leader>t :CtrlPCurWD<CR>
 
 " Additional plugin setup --------------------------------------
 
@@ -191,7 +194,7 @@ set expandtab
 set grepprg=grep\ -nH\ $*
 
 " Set filetypes to ignore
-set wildignore=*.o,*~,*.pyc,*.out,*.class,*.swp
+set wildignore=*.o,*~,*.pyc,*.out,*.class,*.swp,*.d
 
 " Remaps ------------------------------------------------------
 
@@ -217,8 +220,8 @@ nnoremap G Gzz
 
 " let [jk] go down and up by display lines instead of real lines. Let g[jk]
 " do what [jk] normally does
-" nnoremap k gkzz
-" nnoremap j gjzz
+nnoremap k gkzz
+nnoremap j gjzz
 nnoremap gk kzz
 nnoremap gj jzz
 
@@ -291,6 +294,8 @@ nnoremap + <C-w>+
 " Folding commands
 nnoremap <leader><space> za
 vnoremap <leader><space> zf
+
+nnoremap <leader>p <C-^>
 
 " Autocommands ----------------------------------------
 

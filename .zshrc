@@ -1,15 +1,5 @@
 source /etc/profile
 
-# map Caps Lock to Esc
-xmodmap -e "clear lock";
-xmodmap -e "keycode 66 = Escape";
-xmodmap -e "keycode 108 = Mode_switch";
-# map <A-[h,j,k,l]> to navigation
-xmodmap -e "keysym h = h H Left";
-xmodmap -e "keysym j = j J Down";
-xmodmap -e "keysym k = k K Up";
-xmodmap -e "keysym l = l L Right";
-
 # type a directory's name to cd to it
 compctl -/ cd
 
@@ -22,10 +12,6 @@ export JDK_HOME="/usr/lib/jvm/jdk1.6.0_20"
 export HISTFILE=~/.zsh_history
 export HISTSIZE=50000
 export SAVEHIST=50000
-
-export WORKON_HOME=$HOME/.virtualenvs
-mkdir -p ${WORKON_HOME}
-source /usr/local/bin/virtualenvwrapper.sh
 
 ###########################################################
 # Options for Zsh
@@ -52,27 +38,41 @@ set -o vi  # set readline in Vi mode
 # color setup for 'ls'
 eval `dircolors -b`
 
-# TODO(mack): completely remove git-prompt
-
-source ~/.zsh/git-prompt/zshrc.sh
-# prompt for git repos
-#PROMPT='%{$fg[green]%}%n%{$reset_color%}@%{$fg[cyan]%}%m%{$reset_color%}:%{$fg[yellow]%}%~%{$reset_color%} % %# '
-PROMPT='%{$fg[yellow]%}[%1~]%{$reset_color%} % %# '
-
-#function precmd() { print -Pn "\e]2;[%~]\a" }
-function precmd() { print -Pn "\e]2;%n@%m [%~]\a" }
-
-## TODO: move prompt to line below
-## set up prompt to display vi mode (NORMAL/INSERT)
-#function zle-line-init zle-keymap-select {
-#  RPS1="$(git_super_status) ${${KEYMAP/vicmd/[N]}/(main|viins)/[I]}"
-#  RPS2=$RPS1
-#  ZSH_THEME_GIT_PROMPT_NOCACHE=true
-#  zle reset-prompt
-#}
-#zle -N zle-line-init
-#zle -N zle-keymap-select
+# Path to your oh-my-zsh configuration.
+ZSH=$HOME/git_clones/oh-my-zsh
 #
+# # Set name of the theme to load.
+# # Look in ~/.oh-my-zsh/themes/
+# # Optionally, if you set this to "random", it'll load a random theme each
+# # time that oh-my-zsh is loaded.
+ZSH_THEME="kphoen"
+#
+# # Example aliases
+# # alias zshconfig="mate ~/.zshrc"
+# # alias ohmyzsh="mate ~/.oh-my-zsh"
+#
+# # Set to this to use case-sensitive completion
+# # CASE_SENSITIVE="true"
+#
+# # Comment this out to disable weekly auto-update checks
+# # DISABLE_AUTO_UPDATE="true"
+#
+# # Uncomment following line if you want to disable colors in ls
+# # DISABLE_LS_COLORS="true"
+#
+# # Uncomment following line if you want to disable autosetting terminal title.
+# # DISABLE_AUTO_TITLE="true"
+#
+# # Uncomment following line if you want red dots to be displayed while waiting for completion
+# # COMPLETION_WAITING_DOTS="true"
+#
+# # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+# # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# # Example format: plugins=(rails git textmate ruby lighthouse)
+# plugins=(git)
+#
+source $ZSH/oh-my-zsh.sh
+
 # Faster git completion
 __git_files () {
   _wanted files expl 'local files' _files
@@ -175,16 +175,9 @@ function pwdc()  {
 
 function take() { mkdir -p $1 && cd $1 } # mkdir and cd
 
- source /usr/share/autojump/autojump.zsh
+[[ -s ~/.autojump/etc/profile.d/autojump.zsh ]] && source ~/.autojump/etc/profile.d/autojump.zsh
 
 if [ -r ~/.zshrc.local ]
 then
   source ~/.zshrc.local
 fi
-
-## run tmux if we are not currently in a tmux session
-#if [ -z "$TMUX" ]
-#then
-#  # attach to an existing session if it exists, other start new session
-#  tmux2 attach -d || tmux2
-#fi
