@@ -95,11 +95,6 @@ alias s='git status'
 
 function take() { mkdir -p $1 && cd $1 } # mkdir and cd
 
-if [ -r ~/.zshrc.local ]
-then
-  source ~/.zshrc.local
-fi
-
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/git_clones/oh-my-zsh
 
@@ -122,6 +117,13 @@ source $ZSH/oh-my-zsh.sh
 # Customize to your needs...
 export PATH=/usr/local/Cellar/vim/7.3.691/bin:${PATH}
 
-if [ -f `brew --prefix`/etc/autojump ]; then
-  . `brew --prefix`/etc/autojump
+if [ -f brew ] && [ -f `brew --prefix`/etc/autojump ]; then
+  source `brew --prefix`/etc/autojump
+elif [ -f ~/.autojump/etc/profile.d/autojump.zsh ]; then
+  source ~/.autojump/etc/profile.d/autojump.zsh
+fi
+
+if [ -f ~/.zshrc.local ]
+then
+  source ~/.zshrc.local
 fi
