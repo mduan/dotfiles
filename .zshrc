@@ -1,11 +1,28 @@
 source /etc/profile
 
+# Path to your oh-my-zsh configuration.
+ZSH=$HOME/git_clones/oh-my-zsh
+
+# Set name of the theme to load.
+# Look in ~/.oh-my-zsh/themes/
+# Optionally, if you set this to "random", it'll load a random theme each
+# time that oh-my-zsh is loaded.
+ZSH_THEME="kphoen"
+
+# display red dots while waiting for completion
+COMPLETION_WAITING_DOTS="true"
+
+# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+plugins=(git)
+
+source $ZSH/oh-my-zsh.sh
+
 # export environment variables
-export PATH=/usr/local/bin:${PATH}
+export PATH=/usr/local/bin:/usr/local/Cellar/vim/7.3.691/bin:${PATH}
 export BROWSER=links
 export EDITOR=vim
-#export XTERM="aterm +sb -geometry 80x29 -fg black -bg lightgoldenrodyellow -fn -xos4-terminus-medium-*-normal-*-14-*-*-*-*-*-iso8859-15"
-#export JDK_HOME="/usr/lib/jvm/jdk1.6.0_20"
 export HISTFILE=~/.zsh_history
 export HISTSIZE=50000
 export SAVEHIST=50000
@@ -68,7 +85,7 @@ zstyle ':completion:*:kill:*' force-list always
 # cd not select parent dir
 zstyle ':completion:*:cd:*' ignore-parents parent pwd
 
-##################################################################
+##############################################################
 
 # Key bindings
 # http://mundy.yazzy.org/unix/zsh.php
@@ -79,43 +96,20 @@ bindkey '^F' history-incremental-search-forward
 bindkey '^A' beginning-of-line
 bindkey '^E' end-of-line
 
-##################################################################
+##############################################################
 
 # Set up auto extension stuff
 #alias -s py=$EDITOR
 
 # Normal aliases
+alias gd='git diff'
+alias gg='git graph'
+alias gs='git status'
 alias grep="grep --color=auto"
 alias hist="grep '$1' /home/mack/.zsh_history"
-#alias trash='trash-put'
-#alias trash-restore='restore-trash'
-alias d='git diff'
-alias g='git graph'
-alias s='git status'
+alias ls='ls -G -F'
 
 function take() { mkdir -p $1 && cd $1 } # mkdir and cd
-
-# Path to your oh-my-zsh configuration.
-ZSH=$HOME/git_clones/oh-my-zsh
-
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-ZSH_THEME="kphoen"
-
-# display red dots while waiting for completion
-COMPLETION_WAITING_DOTS="true"
-
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git)
-
-source $ZSH/oh-my-zsh.sh
-
-# Customize to your needs...
-export PATH=/usr/local/Cellar/vim/7.3.691/bin:${PATH}
 
 if [ -f brew ] && [ -f `brew --prefix`/etc/autojump ]; then
   source `brew --prefix`/etc/autojump
