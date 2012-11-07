@@ -82,8 +82,9 @@ nnoremap <F2> :NERDTreeToggle<CR>
 " nnoremap <F3> :TMiniBufExplorer<CR>
 nnoremap <F4> :GundoToggle<CR>
 nnoremap <TAB> :MiniBufExplorer<CR>
-nnoremap <leader>r :CtrlP<CR>
-nnoremap <leader>t :CtrlPCurWD<CR>
+nnoremap <silent> <leader>t :CtrlP<CR>
+nnoremap <silent> <leader>r :CtrlPMRUFiles<CR>
+nnoremap <silent> <leader>b :CtrlPBuffer<CR>
 
 " Additional plugin setup --------------------------------------
 
