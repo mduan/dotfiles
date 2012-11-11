@@ -111,7 +111,7 @@ alias ls='ls -G -F'
 
 function take() { mkdir -p $1 && cd $1 } # mkdir and cd
 
-if [ -f brew ] && [ -f `brew --prefix`/etc/autojump ]; then
+if [ -f `which brew` ] && [ -f `brew --prefix`/etc/autojump ]; then
   source `brew --prefix`/etc/autojump
 elif [ -f ~/.autojump/etc/profile.d/autojump.zsh ]; then
   source ~/.autojump/etc/profile.d/autojump.zsh
