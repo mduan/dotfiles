@@ -107,9 +107,12 @@ let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
 " syntastic ------------------------------
 
 " Specify filetypes active/passive syntax checking should be performed for
-let g:syntastic_mode_map = { 'mode': 'passive',
+let g:syntastic_enable_signs=1
+let g:syntastic_auto_loc_list=0
+let g:syntastic_javascript_checker = "jshint"
+let g:syntastic_mode_map = { 'mode': 'active',
                            \ 'active_filetypes': [],
-                           \ 'passive_filetypes': [] }
+                           \ 'passive_filetypes': ['sass', 'scss'] }
 
 " vim-latex ----------------------
 let g:tex_flavor='latex'
@@ -200,7 +203,7 @@ set grepprg=grep\ -nH\ $*
 set wildignore=*.o,*~,*.pyc,*.out,*.class,*.swp,*.d
 
 " Needed on Mac
-set clipboard=unnamed
+" set clipboard=unnamed
 " Needed on Mac with custom homebrew vim
 set backspace=indent,eol,start
 
@@ -380,12 +383,13 @@ endif
 
 " Platform specific configuration ------------------------------------
 
+" Shortcuts for system clipboard
+nnoremap gy "+y
+vnoremap gy "+y
+nnoremap gp "+gP
+vnoremap gp "+gP
+
 if g:SYSTEM == 'unix'
-  " Shortcuts for system clipboard
-  nnoremap gy "+y
-  vnoremap gy "+y
-  nnoremap gp "+gP
-  vnoremap gp "+gP
 
   " TODO: also set up for windows
   " Store temporary files in a central spot
