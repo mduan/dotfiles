@@ -20,7 +20,7 @@ plugins=(git)
 source $ZSH/oh-my-zsh.sh
 
 # export environment variables
-export PATH=/usr/local/bin:/usr/local/Cellar/vim/7.3.691/bin:${PATH}
+export PATH=/usr/local/bin:/usr/local/share/npm/bin:/usr/local/Cellar/vim/7.3.691/bin:${PATH}
 export BROWSER=links
 export EDITOR=vim
 export HISTFILE=~/.zsh_history
@@ -111,8 +111,8 @@ alias ls='ls -G -F'
 
 function take() { mkdir -p $1 && cd $1 } # mkdir and cd
 
-if [ -f `which brew` ] && [ -f `brew --prefix`/etc/autojump ]; then
-  source `brew --prefix`/etc/autojump
+if [ -f `which brew` ] && [ -f `brew --prefix`/etc/autojump.zsh ]; then
+  source `brew --prefix`/etc/autojump.zsh
 elif [ -f ~/.autojump/etc/profile.d/autojump.zsh ]; then
   source ~/.autojump/etc/profile.d/autojump.zsh
 fi

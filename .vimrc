@@ -111,7 +111,6 @@ let g:syntastic_enable_signs=1
 let g:syntastic_auto_loc_list=0
 let g:syntastic_javascript_checker = "jshint"
 let g:syntastic_mode_map = { 'mode': 'active',
-                           \ 'active_filetypes': [],
                            \ 'passive_filetypes': ['sass', 'scss'] }
 
 " vim-latex ----------------------
@@ -206,6 +205,8 @@ set wildignore=*.o,*~,*.pyc,*.out,*.class,*.swp,*.d
 " set clipboard=unnamed
 " Needed on Mac with custom homebrew vim
 set backspace=indent,eol,start
+
+set completeopt=menuone,preview
 
 " Remaps ------------------------------------------------------
 
