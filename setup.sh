@@ -21,10 +21,12 @@ DOTFILES_PATH=`dirname $SCRIPT`
 sudo apt-get install --force-yes --yes build-essential
 sudo apt-get install --force-yes --yes x11-xserver-utils # install xmodmap
 
+sudo apt-get install --force-yes --yes git-core
+
 sudo apt-get install --force-yes --yes zsh
 chsh -s /bin/zsh
 
-sudo apt-get install --force-yes --yes git-core
+rm -rf ~/git_clones/oh-my-zsh && git clone git://github.com/robbyrussell/oh-my-zsh.git ~/git_clones/oh-my-zsh
 
 #sudo apt-get install --force-yes tmux
 sudo apt-get install --force-yes --yes libevent-dev
@@ -40,14 +42,12 @@ mkdir -p ~/bin
 # TODO: should be doing this with an array
 sh -c "ln -sf $DOTFILES_PATH/.zshrc ~/.zshrc && ln -sf $DOTFILES_PATH/.vimrc ~/.vimrc && ln -sf $DOTFILES_PATH/.gvimrc ~/.gvimrc && rm -rf ~/.vim && ln -sf $DOTFILES_PATH/.vim ~/.vim && ln -sf $DOTFILES_PATH/.gitconfig ~/.gitconfig && ln -sf $DOTFILES_PATH/.gitignore_global ~/.gitignore_global && ln -sf $DOTFILES_PATH/.ackrc ~/.ackrc && ln -sf $DOTFILES_PATH/.tmux.conf ~/.tmux.conf && ln -sf $DOTFILES_PATH/tmux_renum.sh ~/bin/tmux_renum.sh"
 
-sh -c 'mkdir -p ~/.zsh && rm -rf ~/.zsh/git-prompt && git clone https://github.com/olivierverdier/zsh-git-prompt.git ~/.zsh/git-prompt'
-
 sudo apt-get install --force-yes --yes ruby
 sudo apt-get install --force-yes --yes ruby-dev # need it for mkmf needed by Command-T
-sh -c 'rm -rf ~/.vim/bundle/vundle && git clone http://github.com/mduan/vundle.git ~/.vim/bundle/vundle/ && vim -c "silent BundleInstall" -c "silent helptags ~/.vim/bundle/vundle/doc" -c "silent qa!" && cd ~/.vim/bundle/Command-T/ruby/command-t && ruby extconf.rb && make && cd -'
+sh -c 'rm -rf ~/.vim/bundle/vundle && git clone http://github.com/mduan/vundle.git ~/.vim/bundle/vundle/ && vim -c "silent BundleInstall" -c "silent helptags ~/.vim/bundle/vundle/doc" -c "silent qa!"'
 
-sudo apt-get install --force-yes --yes autojump
-#sh -c 'rm -rf /tmp/git_autojump/ && cd /tmp && wget https://github.com/downloads/joelthelion/autojump/autojump_v20.tar.gz && cd /tmp/autojump_v20 && chmod a+x install.sh && ./install.sh --local --zsh'
+#sudo apt-get install --force-yes --yes autojump
+sh -c 'rm -rf /tmp/autojump && cd /tmp && git clone git://github.com/joelthelion/autojump.git autojump && autojump/install.sh && cd -'
 
 sudo apt-get install --force-yes --yes python-pip python-dev
 sudo pip install virtualenv virtualenvwrapper
