@@ -49,6 +49,10 @@ sh -c 'rm -rf ~/.vim/bundle/vundle && git clone http://github.com/mduan/vundle.g
 #sudo apt-get install --force-yes --yes autojump
 sh -c 'rm -rf /tmp/autojump && cd /tmp && git clone git://github.com/joelthelion/autojump.git autojump && autojump/install.sh && cd -'
 
+# http://www.pip-installer.org/en/latest/installing.html
+# curl http://python-distribute.org/distribute_setup.py | sudo python
+# curl https://raw.github.com/pypa/pip/master/contrib/get-pip.py | sudo python
+
 sudo apt-get install --force-yes --yes python-pip python-dev
 sudo pip install virtualenv virtualenvwrapper
 
