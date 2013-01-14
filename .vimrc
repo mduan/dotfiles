@@ -199,7 +199,7 @@ set expandtab
 set grepprg=grep\ -nH\ $*
 
 " Set filetypes to ignore
-set wildignore=*.o,*~,*.pyc,*.out,*.class,*.swp,*.d
+set wildignore=*.o,*~,*.pyc,*.out,*.class,*.swp,*.d,**/ext/**,**/js_prod/**,**/css/**
 
 " Needed on Mac
 " set clipboard=unnamed
