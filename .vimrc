@@ -25,53 +25,53 @@ Bundle 'mduan/vundle'
 
 " Bundles to manage -----------------
 
-" Navigation and browsing
-Bundle 'scrooloose/nerdtree'
-" Source control
-Bundle 'tpope/vim-git'
-" Syntax highlighting
+"" Navigation and browsing
+"Bundle 'scrooloose/nerdtree'
+"" Source control
+"Bundle 'tpope/vim-git'
+"" Syntax highlighting
 Bundle 'scrooloose/syntastic'
-" Indentation guidelines
-  " Bundle 'mutewinter/vim-indent-guides'
-" Improved statusline
+"" Indentation guidelines
+"  " Bundle 'mutewinter/vim-indent-guides'
+"" Improved statusline
 Bundle 'Lokaltog/vim-powerline'
-" Improved autocompletion
-" Bundle 'Shougo/neocomplcache'
-" Improved file finding
-" Additional installation instuctions at https://github.com/wincent/Command-T
-" being performed by setup.sh
-" Bundle 'wincent/Command-T'
+"" Improved autocompletion
+"" Bundle 'Shougo/neocomplcache'
+"" Improved file finding
+"" Additional installation instuctions at https://github.com/wincent/Command-T
+"" being performed by setup.sh
+"" Bundle 'wincent/Command-T'
 Bundle 'kien/ctrlp.vim'
-" Surround content in brackets, parens, quotes, etc...
-Bundle 'tpope/vim-surround'
-" Improve working with multiple buffers
-  " Bundle 'fholgado/minibufexpl.vim'
-" Undo tree
-Bundle 'sjl/gundo.vim'
-" Improved bracket, parens, quotes, etc... matching
+"" Surround content in brackets, parens, quotes, etc...
+"Bundle 'tpope/vim-surround'
+"" Improve working with multiple buffers
+"  " Bundle 'fholgado/minibufexpl.vim'
+"" Undo tree
+"Bundle 'sjl/gundo.vim'
+"" Improved bracket, parens, quotes, etc... matching
 Bundle 'vim-scripts/matchit.zip'
-" Few quick commands to switch between source/header files quickly
-Bundle 'vim-scripts/a.vim'
-" Matching capability for Python using %
-" This provides similar functionality to mduan/python.vim
+"" Few quick commands to switch between source/header files quickly
+"Bundle 'vim-scripts/a.vim'
+"" Matching capability for Python using %
+"" This provides similar functionality to mduan/python.vim
 Bundle 'vim-scripts/python_match.vim'
-" Yankring for improved copy/paste
-" Causes slow startup in vim, but seems fine in gvim
-  " Bundle 'vim-scripts/YankRing.vim'
-" Matching capability for Python using ]
-" This provides similar functionality to vim-scripts/python_match.vim
-" Needed for FuzzyFinder
-Bundle 'vim-scripts/L9'
-" Fuzzy matching for bookmarks, tabs, buffers, tabs, files, etc...
-Bundle 'vim-scripts/FuzzyFinder'
-Bundle 'mduan/python.vim'
-" Visually see marks
-" Requires vim compiles with +signs feature
-  " Bundle 'mduan/ShowMarks'
-
-" Tools for helping w/ LaTex
-" Bundle 'vim-scripts/LaTeX-Suite-aka-Vim-LaTeX'
-Bundle "kevinw/pyflakes-vim"
+"" Yankring for improved copy/paste
+"" Causes slow startup in vim, but seems fine in gvim
+"  " Bundle 'vim-scripts/YankRing.vim'
+"" Matching capability for Python using ]
+"" This provides similar functionality to vim-scripts/python_match.vim
+"" Needed for FuzzyFinder
+"Bundle 'vim-scripts/L9'
+"" Fuzzy matching for bookmarks, tabs, buffers, tabs, files, etc...
+"Bundle 'vim-scripts/FuzzyFinder'
+"Bundle 'mduan/python.vim'
+"" Visually see marks
+"" Requires vim compiles with +signs feature
+"  " Bundle 'mduan/ShowMarks'
+"
+"" Tools for helping w/ LaTex
+"" Bundle 'vim-scripts/LaTeX-Suite-aka-Vim-LaTeX'
+"Bundle "kevinw/pyflakes-vim"
 Bundle "altercation/vim-colors-solarized"
 
 
@@ -109,9 +109,10 @@ let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
 " Specify filetypes active/passive syntax checking should be performed for
 let g:syntastic_enable_signs=1
 let g:syntastic_auto_loc_list=0
-let g:syntastic_javascript_checker = "jshint"
+let g:syntastic_javascript_checker = "gjslint"
+" let g:syntastic_javascript_checker = \"jshint\"
 let g:syntastic_mode_map = { 'mode': 'active',
-                           \ 'passive_filetypes': ['sass', 'scss'] }
+                           \ 'passive_filetypes': ['sass', 'scss', 'javascript'] }
 
 " vim-latex ----------------------
 let g:tex_flavor='latex'
@@ -199,7 +200,7 @@ set expandtab
 set grepprg=grep\ -nH\ $*
 
 " Set filetypes to ignore
-set wildignore=*.o,*~,*.pyc,*.out,*.class,*.swp,*.d,**/ext/**,**/js_prod/**,**/css/**
+set wildignore=*.o,*~,*.pyc,*.out,*.class,*.swp,*.d,**/ext/**,**/js_prod/**,**/node_modules/**,**/build/**
 
 " Needed on Mac
 " set clipboard=unnamed
@@ -390,7 +391,7 @@ vnoremap gy "+y
 nnoremap gp "+gP
 vnoremap gp "+gP
 
-if g:SYSTEM == 'unix'
+if g:SYSTEM == 'unix' || g:SYSTEM == 'mac'
 
   " TODO: also set up for windows
   " Store temporary files in a central spot
