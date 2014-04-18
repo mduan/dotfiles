@@ -25,55 +25,41 @@ Bundle 'mduan/vundle'
 
 " Bundles to manage -----------------
 
-"" Navigation and browsing
-"Bundle 'scrooloose/nerdtree'
-"" Source control
-"Bundle 'tpope/vim-git'
-"" Syntax highlighting
+" Navigation and browsing
+Bundle 'scrooloose/nerdtree'
+" Source control
+Bundle 'tpope/vim-git'
+" Syntax highlighting
 Bundle 'scrooloose/syntastic'
-"" Indentation guidelines
-"  " Bundle 'mutewinter/vim-indent-guides'
-"" Improved statusline
+" Improved statusline
 Bundle 'Lokaltog/vim-powerline'
+" Improved file finding
+Bundle 'kien/ctrlp.vim'
+" Improved bracket, parens, quotes, etc... matching
+Bundle 'vim-scripts/matchit.zip'
+" Matching capability for Python using %
+" This provides similar functionality to mduan/python.vim
+Bundle 'vim-scripts/python_match.vim'
+" Visually see marks
+" Requires vim compiles with +signs feature
+Bundle 'mduan/ShowMarks'
+" Linting for python files
+Bundle "kevinw/pyflakes-vim"
+" Solarized coloscheme
+Bundle "altercation/vim-colors-solarized"
+" Improved indentation for JS
+Bundle "pangloss/vim-javascript"
+
 "" Improved autocompletion
 "" Bundle 'Shougo/neocomplcache'
-"" Improved file finding
-"" Additional installation instuctions at https://github.com/wincent/Command-T
-"" being performed by setup.sh
-"" Bundle 'wincent/Command-T'
-Bundle 'kien/ctrlp.vim'
-"" Surround content in brackets, parens, quotes, etc...
-"Bundle 'tpope/vim-surround'
-"" Improve working with multiple buffers
-"  " Bundle 'fholgado/minibufexpl.vim'
-"" Undo tree
-"Bundle 'sjl/gundo.vim'
-"" Improved bracket, parens, quotes, etc... matching
-Bundle 'vim-scripts/matchit.zip'
-"" Few quick commands to switch between source/header files quickly
-"Bundle 'vim-scripts/a.vim'
-"" Matching capability for Python using %
-"" This provides similar functionality to mduan/python.vim
-Bundle 'vim-scripts/python_match.vim'
-"" Yankring for improved copy/paste
-"" Causes slow startup in vim, but seems fine in gvim
-"  " Bundle 'vim-scripts/YankRing.vim'
-"" Matching capability for Python using ]
-"" This provides similar functionality to vim-scripts/python_match.vim
-"" Needed for FuzzyFinder
-"Bundle 'vim-scripts/L9'
-"" Fuzzy matching for bookmarks, tabs, buffers, tabs, files, etc...
-"Bundle 'vim-scripts/FuzzyFinder'
-"Bundle 'mduan/python.vim'
-"" Visually see marks
-"" Requires vim compiles with +signs feature
-"  " Bundle 'mduan/ShowMarks'
-"
 "" Tools for helping w/ LaTex
 "" Bundle 'vim-scripts/LaTeX-Suite-aka-Vim-LaTeX'
-"Bundle "kevinw/pyflakes-vim"
-Bundle "altercation/vim-colors-solarized"
-
+"" Surround content in brackets, parens, quotes, etc...
+"" Bundle 'tpope/vim-surround'
+"" Improve working with multiple buffers
+"" Bundle 'fholgado/minibufexpl.vim'
+"" Undo tree
+"" Bundle 'sjl/gundo.vim'
 
 " Shortcuts for plugins ---------------------------------------
 nnoremap <F2> :NERDTreeToggle<CR>

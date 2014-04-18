@@ -22,7 +22,7 @@ source $ZSH/oh-my-zsh.sh
 unsetopt correct_all
 
 # export environment variables
-export PATH=/usr/local/bin:/usr/local/share/npm/bin:/usr/local/Cellar/vim/7.3.691/bin:${PATH}
+export PATH=/Users/mackduan/git_clones/react/bin/:usr/local/bin:/usr/local/share/npm/bin:/usr/local/Cellar/vim/7.4.052/bin:${PATH}
 export BROWSER=links
 export EDITOR=vim
 export HISTFILE=~/.zsh_history

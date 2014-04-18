@@ -1,24 +1,25 @@
 [core]
   editor = /usr/bin/vim
-  excludesfile = ~/.gitignore_global
+  excludesfile = /Users/mackduan/.gitignore_global
 
 [diff]
-	tool = vimdiff
+  tool = vimdiff
 [alias]
-	unstage = reset HEAD --
-	last = log -1 HEAD
+  unstage = reset HEAD --
+  last = log -1 HEAD
   #graph = "log --graph --oneline --full-history --color --branches --decorate --all"
   graph = log --graph --decorate --oneline --pretty=format:"%h%x20%Cgreen%d%x20%Cred%an%x20%Cblue%ad%x20%Creset%s" --all --full-history --date=short
+  logr = !sh -c 'git log --reverse --ancestry-path $0^..master'
 
 [color]
-	status = auto
-	branch = auto
-	diff = auto
-	interactive = auto
+  status = auto
+  branch = auto
+  diff = auto
+  interactive = auto
 
 [user]
-	name = mduan
-	email = duan.mack@gmail.com
+  name = Mack Duan
+  email = duan.mack@gmail.com
 
 [merge]
   tool = vimdiff
@@ -26,6 +27,14 @@
 
 [diff]
   # Use mnemonic prefixes (index, work tree, commit, object) instead of the standard a and b notation
-	mnemonicprefix = true
+  mnemonicprefix = true
   # Detect renames as well as copies
-	renames = copies
+  renames = copies
+[difftool "sourcetree"]
+  cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+  path = 
+[mergetool "sourcetree"]
+  cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+  trustExitCode = true
+[push]
+  default = simple
