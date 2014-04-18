@@ -107,9 +107,12 @@ bindkey '^E' end-of-line
 alias gd='git diff'
 alias gg='git graph'
 alias gs='git status'
-alias grep="grep --color=auto"
-alias hist="grep '$1' /home/mack/.zsh_history"
+alias grep='grep --color=auto'
 alias ls='ls -G -F'
+if [[ "$OSTYPE" == 'darwin'* ]]; then
+  # Apparently, the vim bundled with MacVim is faster
+  alias vim='mvim -v'
+fi
 
 function take() { mkdir -p $1 && cd $1 } # mkdir and cd
 
