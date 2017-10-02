@@ -17,49 +17,48 @@ endif
 " Use vundle for plugin management
 filetype off
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
-" Let Vundle manage Vundle; required
-Bundle 'mduan/vundle'
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
 
 " Bundles to manage -----------------
 
 " Navigation and browsing
-Bundle 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdtree'
 " Source control
-Bundle 'tpope/vim-git'
+Plugin 'tpope/vim-git'
 " Syntax highlighting
-Bundle 'scrooloose/syntastic'
+Plugin 'scrooloose/syntastic'
 " Improved statusline
-Bundle 'Lokaltog/vim-powerline'
+Plugin 'Lokaltog/vim-powerline'
 " Improved file finding
-Bundle 'kien/ctrlp.vim'
+Plugin 'kien/ctrlp.vim'
 " Improved bracket, parens, quotes, etc... matching
-Bundle 'vim-scripts/matchit.zip'
+Plugin 'vim-scripts/matchit.zip'
 " Matching capability for Python using %
 " This provides similar functionality to mduan/python.vim
-Bundle 'vim-scripts/python_match.vim'
-" Visually see marks
-" Requires vim compiles with +signs feature
-Bundle 'mduan/ShowMarks'
+Plugin 'vim-scripts/python_match.vim'
 " Linting for python files
-Bundle "kevinw/pyflakes-vim"
+Plugin 'kevinw/pyflakes-vim'
 " Solarized coloscheme
-Bundle "altercation/vim-colors-solarized"
+Plugin 'altercation/vim-colors-solarized'
 " Improved indentation for JS
-Bundle "pangloss/vim-javascript"
+Plugin 'pangloss/vim-javascript'
 
 "" Improved autocompletion
-"" Bundle 'Shougo/neocomplcache'
+"" Plugin 'Shougo/neocomplcache'
 "" Tools for helping w/ LaTex
-"" Bundle 'vim-scripts/LaTeX-Suite-aka-Vim-LaTeX'
+"" Plugin 'vim-scripts/LaTeX-Suite-aka-Vim-LaTeX'
 "" Surround content in brackets, parens, quotes, etc...
-"" Bundle 'tpope/vim-surround'
+"" Plugin 'tpope/vim-surround'
 "" Improve working with multiple buffers
-"" Bundle 'fholgado/minibufexpl.vim'
+"" Plugin 'fholgado/minibufexpl.vim'
 "" Undo tree
-"" Bundle 'sjl/gundo.vim'
+"" Plugin 'sjl/gundo.vim'
+
+call vundle#end()
 
 " Shortcuts for plugins ---------------------------------------
 nnoremap <F2> :NERDTreeToggle<CR>
@@ -131,7 +130,7 @@ filetype plugin indent on
 set t_Co=256          " Needs to be set before settings colorscheme
 
 " Basic config
-set background=dark
+set background=light
 colorscheme solarized " Color scheme to use
 syntax on             " Enable syntax highlighting
 
@@ -162,7 +161,6 @@ set mouse=a           " Allow mouse to be used. Works on Ubuntu gvim AND termina
 set noautochdir       " Disable automatically changing directories when switching windows
 set tags=tags;/       " Look in the current dir and up tree towards root until a tag file is found
 set autoread          " Automatically reload changed files on disk (useful for git branch switching)
-set updatetime=500    " Affects freq that CursorHold autocommand is triggered, used by ShowMarks plugin
 "set switchbuf=usetab,newtab " Switch to existing tab if buffer is open, or create new one if not
 "set autowrite        " Automatically write buffers to file when switching to another buffer (i.e. :next, etc)
 "set nrformats=alpha  " Allow incrementing letters
