@@ -26,37 +26,40 @@ Plugin 'VundleVim/Vundle.vim'
 " Bundles to manage -----------------
 
 " Navigation and browsing
-Plugin 'scrooloose/nerdtree'
+Bundle 'scrooloose/nerdtree'
 " Source control
-Plugin 'tpope/vim-git'
+Bundle 'tpope/vim-git'
 " Syntax highlighting
-Plugin 'scrooloose/syntastic'
+Bundle 'scrooloose/syntastic'
 " Improved statusline
-Plugin 'Lokaltog/vim-powerline'
+" Bundle 'Lokaltog/vim-powerline'
+" Bundle 'stephenmckinney/vim-solarized-powerline'
+Bundle 'vim-airline/vim-airline'
+Bundle 'vim-airline/vim-airline-themes'
 " Improved file finding
-Plugin 'kien/ctrlp.vim'
+Bundle 'kien/ctrlp.vim'
 " Improved bracket, parens, quotes, etc... matching
-Plugin 'vim-scripts/matchit.zip'
+Bundle 'vim-scripts/matchit.zip'
 " Matching capability for Python using %
 " This provides similar functionality to mduan/python.vim
-Plugin 'vim-scripts/python_match.vim'
+Bundle 'vim-scripts/python_match.vim'
 " Linting for python files
-Plugin 'kevinw/pyflakes-vim'
+" Bundle "kevinw/pyflakes-vim"
 " Solarized coloscheme
-Plugin 'altercation/vim-colors-solarized'
+Bundle "altercation/vim-colors-solarized"
 " Improved indentation for JS
-Plugin 'pangloss/vim-javascript'
+Bundle "pangloss/vim-javascript"
 
 "" Improved autocompletion
-"" Plugin 'Shougo/neocomplcache'
+"" Bundle 'Shougo/neocomplcache'
 "" Tools for helping w/ LaTex
-"" Plugin 'vim-scripts/LaTeX-Suite-aka-Vim-LaTeX'
+"" Bundle 'vim-scripts/LaTeX-Suite-aka-Vim-LaTeX'
 "" Surround content in brackets, parens, quotes, etc...
-"" Plugin 'tpope/vim-surround'
+"" Bundle 'tpope/vim-surround'
 "" Improve working with multiple buffers
-"" Plugin 'fholgado/minibufexpl.vim'
+"" Bundle 'fholgado/minibufexpl.vim'
 "" Undo tree
-"" Plugin 'sjl/gundo.vim'
+"" Bundle 'sjl/gundo.vim'
 
 call vundle#end()
 
@@ -120,6 +123,15 @@ let g:Tex_CompileRule_pdf = 'pdflatex $*'
 " let g:miniBufExplForceSyntaxEnable = 0
 " let g:miniBufExplUseSingleClick = 1
 
+" vim-airline
+let g:airline_theme = 'solarized'
+let g:airline_powerline_fonts = 1
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+let g:airline_symbols.linenr = ''
+let g:airline_symbols.maxlinenr = ''
+
 " -----------------------------------------------------------------
 
 " Use custom filetype indentation rules in .vim/ftplugin/<lang>.vim
@@ -132,10 +144,10 @@ set t_Co=256          " Needs to be set before settings colorscheme
 " Basic config
 set background=light
 colorscheme solarized " Color scheme to use
-syntax on             " Enable syntax highlighting
+syntax enable             " Enable syntax highlighting
 
 " Set highlighting colour for search
-highlight search ctermfg=yellow ctermbg=darkblue
+" highlight search ctermfg=yellow ctermbg=darkblue
 
 " General option sets
 set nocompatible      " Use vim defaults
@@ -245,7 +257,7 @@ inoremap <C-BS> <C-W>
 " Add entry to undo history for each new line while in insert mode
 inoremap <cr> <c-g>u<cr>
 " noremap <space> i<space><esc><right>
-noremap <cr> o<esc>
+" noremap <cr> o<esc>
 
 " Visual-mode indentation shifting: don't de-select after shift, keep selected.
 vnoremap < <gv

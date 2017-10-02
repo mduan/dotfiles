@@ -1,6 +1,4 @@
-source /etc/profile
-
-# Path to your oh-my-zsh configuration.
+# Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load.
@@ -9,29 +7,113 @@ export ZSH=$HOME/.oh-my-zsh
 # time that oh-my-zsh is loaded.
 ZSH_THEME="kphoen"
 
-# display red dots while waiting for completion
-COMPLETION_WAITING_DOTS="true"
+# Uncomment the following line to use case-sensitive completion.
+# CASE_SENSITIVE="true"
+
+# Uncomment the following line to use hyphen-insensitive completion. Case
+# sensitive completion must be off. _ and - will be interchangeable.
+# HYPHEN_INSENSITIVE="true"
+
+# Uncomment the following line to disable bi-weekly auto-update checks.
+# DISABLE_AUTO_UPDATE="true"
+
+# Uncomment the following line to change how often to auto-update (in days).
+# export UPDATE_ZSH_DAYS=13
+
+# Uncomment the following line to disable colors in ls.
+# DISABLE_LS_COLORS="true"
+
+# Uncomment the following line to disable auto-setting terminal title.
+# DISABLE_AUTO_TITLE="true"
+
+# Uncomment the following line to enable command auto-correction.
+# ENABLE_CORRECTION="true"
+
+# Uncomment the following line to display red dots whilst waiting for completion.
+# COMPLETION_WAITING_DOTS="true"
+
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# HIST_STAMPS="mm/dd/yyyy"
+
+# Would you like to use another custom folder than $ZSH/custom?
+# ZSH_CUSTOM=/path/to/new-custom-folder
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(git fasd virtualenvwrapper)
+
+# User configuration
+
+# export PATH="/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
+# export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
 
-unsetopt correct_all
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
+
+# Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
+
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
+
+# ssh
+# export SSH_KEY_PATH="~/.ssh/dsa_id"
+
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
+#
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# http://virtualenvwrapper.readthedocs.io/en/latest/install.html
+export WORKON_HOME=$HOME/.virtualenvs
+export PROJECT_HOME=$HOME/Devel
+source /usr/local/bin/virtualenvwrapper.sh
+
+export PYENV_ROOT="${HOME}/.pyenv"
+if [ -d "${PYENV_ROOT}" ]; then
+  export PATH="${PYENV_ROOT}/bin:${PATH}"
+  eval "$(pyenv init -)"
+fi
+
+if [ -n "$VIRTUAL_ENV" ]; then
+  source "$VIRTUAL_ENV/bin/activate"
+fi
+
+# https://github.com/clvv/fasd
+alias a='fasd -a'        # any
+alias s='fasd -si'       # show / search / select
+alias d='fasd -d'        # directory
+alias f='fasd -f'        # file
+alias sd='fasd -sid'     # interactive directory selection
+alias sf='fasd -sif'     # interactive file selection
+alias z='fasd_cd -d'     # cd, same functionality as j in autojump
+alias zz='fasd_cd -d -i' # cd with interactive selection
 
 # export environment variables
-export PATH=/Users/mackduan/git_clones/react/bin/:usr/local/bin:/usr/local/share/npm/bin:/usr/local/Cellar/vim/7.4.052/bin:${PATH}
 export BROWSER=links
 export EDITOR=vim
 export HISTFILE=~/.zsh_history
 export HISTSIZE=50000
 export SAVEHIST=50000
-
-export WORKON_HOME=$HOME/.virtualenvs
-mkdir -p ${WORKON_HOME}
-#source /usr/local/bin/virtualenvwrapper.sh
 
 ###########################################################
 # Options for Zsh
@@ -40,23 +122,20 @@ mkdir -p ${WORKON_HOME}
 setopt autopushd pushdminus pushdsilent pushdtohome
 setopt autocd
 setopt cdablevars
-setopt ignoreeof
 setopt interactivecomments
 setopt nobanghist
 setopt noclobber
-setopt HIST_REDUCE_BLANKS
-setopt HIST_IGNORE_SPACE
-setopt SH_WORD_SPLIT
+setopt hist_reduce_blanks
+setopt hist_ignore_dups
+setopt hist_ignore_space
+setopt inc_append_history
+setopt share_history
+setopt sh_word_split
 setopt nohup
 setopt share_history
 
 # bindkey -e  # support emac shortcuts i.e. <C-A>, <C-E>, <C-W>
 set -o vi  # set readline in Vi mode
-
-# visual settings -----------------
-
-# color setup for 'ls'
-#eval `dircolors -b`
 
 # Faster git completion
 __git_files () {
@@ -109,20 +188,11 @@ alias gg='git graph'
 alias gs='git status'
 alias grep='grep --color=auto'
 alias ls='ls -G -F'
-if [[ "$OSTYPE" == 'darwin'* ]]; then
-  # Apparently, the vim bundled with MacVim is faster
-  alias vim='mvim -v'
-fi
+alias ag='ag --pager less'
 
 function take() { mkdir -p $1 && cd $1 } # mkdir and cd
 
-if [[ -f `which brew` ]] && [[ -f `brew --prefix`/etc/autojump.zsh ]]; then
-  source `brew --prefix`/etc/autojump.zsh
-elif [ -f ~/.autojump/etc/profile.d/autojump.zsh ]; then
-  source ~/.autojump/etc/profile.d/autojump.zsh
-fi
+# Hack to fix $VIRTUAL_ENV being set to analytics folder for some reason
+cd .
 
-if [ -f ~/.zshrc.local ]
-then
-  source ~/.zshrc.local
-fi
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
