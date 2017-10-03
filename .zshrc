@@ -65,7 +65,7 @@ eval "$(fasd --init auto)"
 
 source $ZSH/oh-my-zsh.sh
 
-PROMPT="$(virtualenv_prompt_info) $PROMPT"
+PROMPT="$(virtualenv_prompt_info)$PROMPT"
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
