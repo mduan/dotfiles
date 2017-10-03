@@ -94,10 +94,6 @@ if [ -d "${PYENV_ROOT}" ]; then
   eval "$(pyenv init -)"
 fi
 
-if [ -n "$VIRTUAL_ENV" ]; then
-  source "$VIRTUAL_ENV/bin/activate"
-fi
-
 # https://github.com/clvv/fasd
 alias a='fasd -a'        # any
 alias s='fasd -si'       # show / search / select
