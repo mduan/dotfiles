@@ -1,5 +1,3 @@
-source /etc/profile
-
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
@@ -47,11 +45,15 @@ ZSH_THEME="kphoen"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
+if [ -d /home/mack ]; then
+  export VIRTUAL_ENV=/home/mack/env
+fi
+
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git fasd)
+plugins=(git fasd virtualenv)
 
 # For some reason, this is needed even though fasd is specified as a plugin above.
 eval "$(fasd --init auto)"
@@ -62,6 +64,8 @@ eval "$(fasd --init auto)"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
+
+PROMPT="$(virtualenv_prompt_info) $PROMPT"
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -188,7 +192,19 @@ alias ag='ag --pager less'
 
 function take() { mkdir -p $1 && cd $1 } # mkdir and cd
 
-# Hack to fix $VIRTUAL_ENV being set to analytics folder for some reason
-cd .
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+if [ -d /home/mack ]; then
+  export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64/jre
+
+  source "$HOME/analytics/.shellenv"
+
+  # The next line updates PATH for the Google Cloud SDK.
+  source "$HOME/google-cloud-sdk/path.zsh.inc"
+
+  # The next line enables shell command completion for gcloud.
+  source "$HOME/google-cloud-sdk/completion.zsh.inc"
+
+  source "$HOME/analytics/google-cloud/scripts/define_aliases.sh"
+  source "$HOME/analytics/google-cloud/scripts/kube.sh"
+fi
