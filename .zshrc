@@ -1,3 +1,5 @@
+export PATH="/usr/local/bin:${PATH}"
+
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
@@ -47,6 +49,9 @@ ZSH_THEME="kphoen"
 
 if [ -d /home/mack ]; then
   export VIRTUAL_ENV=/home/mack/env
+fi
+if [ -d ~/.virtualenvs/analytics ]; then
+  export VIRTUAL_ENV=~/.virtualenvs/analytics
 fi
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
@@ -208,3 +213,6 @@ if [ -d /home/mack ]; then
   source "$HOME/analytics/google-cloud/scripts/define_aliases.sh"
   source "$HOME/analytics/google-cloud/scripts/kube.sh"
 fi
+
+export NVM_DIR="$HOME/.nvm"
+. "/usr/local/opt/nvm/nvm.sh"

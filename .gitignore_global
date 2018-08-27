@@ -1,4 +1,6 @@
 .arc/
+.editorconfig
+.idea/
 .svn/
 .DS_Store?
 .DS_Store

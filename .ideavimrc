@@ -1,0 +1,9 @@
+source ~/.vimrc
+
+nnoremap / /
+vnoremap / /
+nnoremap ? ?
+vnoremap ? ?
+cnoremap %s/ %s/
+inoremap <cr> <cr>
+noremap <cr> <cr>
