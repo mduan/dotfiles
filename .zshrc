@@ -4,6 +4,7 @@ export PATH="/usr/local/bin:${PATH}"
 [[ -d /home/mack-gcp ]]; IS_GCP_DEVBOX=$?
 [[ "$IS_SL_DEVBOX" == 0 ]] || [[ "$IS_GCP_DEVBOX" == 0 ]]; IS_DEVBOX=$?
 [[ -d /Users/mackduan/mixpanel ]]; IS_WORK_LAPTOP=$?
+[[ "$IS_DEVBOX" == 0 ]] || [[ "$IS_WORK_LAPTOP" == 0 ]]; IS_WORK_MACHINE=$?
 
 if [[ "$IS_DEVBOX" == 0 ]]; then
   # This has to happen early in this file because it sets certain terminal styles that
@@ -203,8 +204,10 @@ function take() { mkdir -p $1 && cd $1 } # mkdir and cd
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-export NVM_DIR="$HOME/.nvm"
-. "$NVM_DIR/nvm.sh"
+if [[ "$IS_WORK_MACHINE" == 0 ]]; then
+  export NVM_DIR="$HOME/.nvm"
+  . "$NVM_DIR/nvm.sh"
+fi
 
 if [[ "$IS_DEVBOX" == 0 ]]; then
   export VIRTUAL_ENV="$HOME/env"

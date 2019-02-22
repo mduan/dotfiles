@@ -41,7 +41,10 @@ def install_nvm():
     if command_exists('nvm'):
         return
 
-    call_shell('git clone https://github.com/creationix/nvm.git ~/.nvm')
+    call_shell(
+        'rm -rf ~/.nvm'
+        ' && git clone https://github.com/creationix/nvm.git ~/.nvm'
+    )
 
 def script():
 
