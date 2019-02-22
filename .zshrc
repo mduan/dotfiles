@@ -243,3 +243,11 @@ if [[ "$IS_GCP_DEVBOX" == 0 ]]; then
   fi
   export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock;
 fi
+
+if [[ "$IS_DEVBOX" == 0 ]]; then
+  echo -n "Reconnect to 'analytics' tmux session [Y/n]? "
+  read -n REPLY
+  if [[ "$REPLY" != "n" ]]; then
+    tmux attach -d -t analytics
+  fi
+fi
