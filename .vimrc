@@ -30,36 +30,20 @@ Bundle 'scrooloose/nerdtree'
 " Source control
 Bundle 'tpope/vim-git'
 " Syntax highlighting
-Bundle 'scrooloose/syntastic'
-" Improved statusline
-" Bundle 'Lokaltog/vim-powerline'
-" Bundle 'stephenmckinney/vim-solarized-powerline'
-Bundle 'vim-airline/vim-airline'
-Bundle 'vim-airline/vim-airline-themes'
+" Bundle 'scrooloose/syntastic'
+" TODO: Disabling airline to debug slowness
+" Bundle 'vim-airline/vim-airline'
+" Bundle 'vim-airline/vim-airline-themes'
 " Improved file finding
 Bundle 'kien/ctrlp.vim'
 " Improved bracket, parens, quotes, etc... matching
 Bundle 'vim-scripts/matchit.zip'
 " Matching capability for Python using %
-" This provides similar functionality to mduan/python.vim
 Bundle 'vim-scripts/python_match.vim'
-" Linting for python files
-" Bundle "kevinw/pyflakes-vim"
 " Solarized coloscheme
 Bundle "altercation/vim-colors-solarized"
 " Improved indentation for JS
 Bundle "pangloss/vim-javascript"
-
-"" Improved autocompletion
-"" Bundle 'Shougo/neocomplcache'
-"" Tools for helping w/ LaTex
-"" Bundle 'vim-scripts/LaTeX-Suite-aka-Vim-LaTeX'
-"" Surround content in brackets, parens, quotes, etc...
-"" Bundle 'tpope/vim-surround'
-"" Improve working with multiple buffers
-"" Bundle 'fholgado/minibufexpl.vim'
-"" Undo tree
-"" Bundle 'sjl/gundo.vim'
 
 call vundle#end()
 
@@ -156,7 +140,7 @@ set laststatus=2      " Always show status line
 set scrolloff=5
 set showcmd           " Display incomplete commands
 set hlsearch          " Highlight searches
-set incsearch         " Do incremental searches
+set noincsearch       " Do incremental searches
 set ruler             " Show the cursor position all the time
 set number            " Show line numbers
 set ignorecase        " Ignore case when searching

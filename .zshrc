@@ -1,5 +1,16 @@
 export PATH="/usr/local/bin:${PATH}"
 
+[[ -d /home/mack ]]; IS_SL_DEVBOX=$?
+[[ -d /home/mack-gcp ]]; IS_GCP_DEVBOX=$?
+[[ "$IS_SL_DEVBOX" == 0 ]] || [[ "$IS_GCP_DEVBOX" == 0 ]]; IS_DEVBOX=$?
+[[ -d /Users/mackduan/mixpanel ]]; IS_WORK_LAPTOP=$?
+
+if [[ "$IS_DEVBOX" == 0 ]]; then
+  # This has to happen early in this file because it sets certain terminal styles that
+  # override my own settings.
+  source "$HOME/analytics/.shellenv"
+fi
+
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
@@ -46,13 +57,6 @@ ZSH_THEME="kphoen"
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
-
-if [ -d /home/mack ]; then
-  export VIRTUAL_ENV=/home/mack/env
-fi
-if [ -d ~/.virtualenvs/analytics ]; then
-  export VIRTUAL_ENV=~/.virtualenvs/analytics
-fi
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
@@ -193,26 +197,41 @@ alias gg='git graph'
 alias gs='git status'
 alias grep='grep --color=auto'
 alias ls='ls -G -F'
-alias ag='ag --pager less'
+alias ag='ag --pager less --hidden'
 
 function take() { mkdir -p $1 && cd $1 } # mkdir and cd
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-if [ -d /home/mack ]; then
+export NVM_DIR="$HOME/.nvm"
+. "$NVM_DIR/nvm.sh"
+
+if [[ "$IS_DEVBOX" == 0 ]]; then
+  export VIRTUAL_ENV="$HOME/env"
+elif [[ "$IS_WORK_LAPTOP" == 0 ]]; then
+  if [ -d ~/.virtualenvs/analytics ]; then
+    source ~/.virtualenvs/analytics/bin/activate
+  fi
+fi
+
+if [[ "$IS_SL_DEVBOX" == 0 ]]; then
   export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64/jre
 
-  source "$HOME/analytics/.shellenv"
-
-  # The next line updates PATH for the Google Cloud SDK.
   source "$HOME/google-cloud-sdk/path.zsh.inc"
-
-  # The next line enables shell command completion for gcloud.
   source "$HOME/google-cloud-sdk/completion.zsh.inc"
 
   source "$HOME/analytics/google-cloud/scripts/define_aliases.sh"
   source "$HOME/analytics/google-cloud/scripts/kube.sh"
+elif [[ "$IS_GCP_DEVBOX" == 0 ]]; then
+  source ~/.gcpdevbox
+elif [[ "$IS_WORK_LAPTOP" == 0 ]]; then
+  source "$HOME/google-cloud-sdk/path.zsh.inc"
+  source "$HOME/google-cloud-sdk/completion.zsh.inc"
 fi
 
-export NVM_DIR="$HOME/.nvm"
-. "/usr/local/opt/nvm/nvm.sh"
+if [[ "$IS_GCP_DEVBOX" == 0 ]]; then
+  if [[ -S "$SSH_AUTH_SOCK" && ! -h "$SSH_AUTH_SOCK" ]]; then
+    ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock;
+  fi
+  export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock;
+fi
