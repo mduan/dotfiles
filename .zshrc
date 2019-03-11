@@ -204,10 +204,9 @@ function take() { mkdir -p $1 && cd $1 } # mkdir and cd
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-if [[ "$IS_WORK_MACHINE" == 0 ]]; then
-  export NVM_DIR="$HOME/.nvm"
-  . "$NVM_DIR/nvm.sh"
-fi
+export NVM_DIR="$HOME/.nvm"
+. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 if [[ "$IS_DEVBOX" == 0 ]]; then
   export VIRTUAL_ENV="$HOME/env"
