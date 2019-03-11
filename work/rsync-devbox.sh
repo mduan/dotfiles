@@ -7,12 +7,12 @@ function rsync_repo {
     exit 1
   fi
 
-  if [[ ${BASE_NAME} != 'analytics' && ${BASE_NAME} != 'mixpanel-common' && ${BASE_NAME} != 'correlate' ]]; then
+  if [[ ${BASE_NAME} != 'analytics' ]]; then
     echo "Cannot rsync '${BASE_NAME}'"
     exit 1
   fi
 
-  SYNC_TO_DIR="mack-dev:~/${BASE_NAME}"
+  SYNC_TO_DIR="mack-gcp:~/${BASE_NAME}"
   echo "Syncing to ${SYNC_TO_DIR}"
   rsync -rav --exclude="/.git/worktrees" --filter="dir-merge,- .gitignore" --delete . "${SYNC_TO_DIR}"
 }
