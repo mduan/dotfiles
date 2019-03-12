@@ -24,7 +24,11 @@ def install_fzf():
         return
 
     if IS_LINUX:
-        call_shell('sudo apt-get install fzf')
+        call_shell(
+            'rm ~/.fzf'
+            ' && git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf'
+            ' && ~/.fzf/install'
+        )
 
 def install_zsh():
     if command_exists('zsh'):
