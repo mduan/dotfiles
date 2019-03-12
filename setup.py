@@ -19,6 +19,13 @@ def call_shell(command):
 def command_exists(command):
     return not call_shell('which {} > /dev/null'.format(command))
 
+def install_fzf():
+    if command_exists('fzf'):
+        return
+
+    if IS_LINUX:
+        call_shell('sudo apt-get install fzf')
+
 def install_zsh():
     if command_exists('zsh'):
         return
@@ -60,6 +67,7 @@ def script():
         sys.exit(1)
 
     install_fasd()
+    install_fzf()
     install_nvm()
     install_zsh()
 
