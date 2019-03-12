@@ -221,9 +221,6 @@ if [[ "$IS_SL_DEVBOX" == 0 ]]; then
 
   source "$HOME/google-cloud-sdk/path.zsh.inc"
   source "$HOME/google-cloud-sdk/completion.zsh.inc"
-
-  source "$HOME/analytics/google-cloud/scripts/define_aliases.sh"
-  source "$HOME/analytics/google-cloud/scripts/kube.sh"
 elif [[ "$IS_GCP_DEVBOX" == 0 ]]; then
   source ~/.gcpdevbox
 elif [[ "$IS_WORK_LAPTOP" == 0 ]]; then
@@ -232,6 +229,9 @@ elif [[ "$IS_WORK_LAPTOP" == 0 ]]; then
 fi
 
 if [[ "$IS_DEVBOX" == 0 ]]; then
+  source "$HOME/analytics/google-cloud/scripts/define_aliases.sh"
+  source "$HOME/analytics/google-cloud/scripts/kube.sh"
+
   alias start-webpack='MP_ENV_TYPE=dev ./node_modules/.bin/webpack --progress --colors --watch --watch-poll=2000 --watch-aggregate-timeout=5000'
   alias start-webpack-server='MP_ENV_TYPE=dev ./node_modules/.bin/webpack-dev-server --progress --colors --watch-poll=2000 --watch-aggregate-timeout=5000'
 fi
