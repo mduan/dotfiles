@@ -15,11 +15,16 @@ fi
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-ZSH_THEME="kphoen"
+if [[ "$IS_DEVBOX" != 0 ]]; then
+  # Set name of the theme to load.
+  # Look in ~/.oh-my-zsh/themes/
+  # Optionally, if you set this to "random", it'll load a random theme each
+  # time that oh-my-zsh is loaded.
+  # Using a theme slows down zsh noticeably. Don't use a theme on devbox to speed things up and also helps differentiate it from
+  # local machine
+  # ZSH_THEME="kphoen"
+  ZSH_THEME="miloshadzic"
+fi
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -49,7 +54,7 @@ ZSH_THEME="kphoen"
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
 # much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
+DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
@@ -75,7 +80,9 @@ eval "$(fasd --init auto)"
 
 source $ZSH/oh-my-zsh.sh
 
-PROMPT="$(virtualenv_prompt_info)$PROMPT"
+if [[ "$IS_DEVBOX" != 0 ]]; then
+  PROMPT="$(virtualenv_prompt_info)$PROMPT"
+fi
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
