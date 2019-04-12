@@ -19,6 +19,13 @@ def call_shell(command):
 def command_exists(command):
     return not call_shell('which {} > /dev/null'.format(command))
 
+def install_ag():
+    if command_exists('ag'):
+        return
+
+    if IS_LINUX:
+        call_shell('sudo apt-get install silversearcher-ag')
+
 def install_fzf():
     if command_exists('fzf'):
         return
@@ -70,6 +77,7 @@ def script():
     if response != 'y':
         sys.exit(1)
 
+    install_ag()
     install_fasd()
     install_fzf()
     install_nvm()
@@ -78,7 +86,7 @@ def script():
     call_shell('sudo chsh -s $(which zsh) $USER')
 
     DOTFILES = [
-        '.ackrc',
+        '.agignore',
         '.gitconfig',
         '.gitignore_global',
         '.gvimrc',
