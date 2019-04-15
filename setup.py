@@ -118,6 +118,8 @@ def script():
         ' && git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh'
     )
 
+    # After the command below, need to manully restart tmux. Then Need to manually press prefix + I to fetch the plugin and source it.
+    # TODO: automate the above steps
     call_shell(
         'rm -rf ~/.tmux/plugins'
         ' && git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm'
