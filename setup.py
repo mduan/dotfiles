@@ -118,6 +118,11 @@ def script():
         ' && git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh'
     )
 
+    call_shell(
+        'rm -rf ~/.tmux/plugins'
+        ' && git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm'
+    )
+
     print 'Log out and back in to start using Zsh'
 
 if __name__ == '__main__':
