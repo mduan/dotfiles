@@ -224,8 +224,6 @@ elif [[ "$IS_WORK_LAPTOP" == 0 ]]; then
 fi
 
 if [[ "$IS_SL_DEVBOX" == 0 ]]; then
-  export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64/jre
-
   source "$HOME/google-cloud-sdk/path.zsh.inc"
   source "$HOME/google-cloud-sdk/completion.zsh.inc"
 elif [[ "$IS_GCP_DEVBOX" == 0 ]]; then
@@ -236,6 +234,8 @@ elif [[ "$IS_WORK_LAPTOP" == 0 ]]; then
 fi
 
 if [[ "$IS_DEVBOX" == 0 ]]; then
+  export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64/jre
+
   source "$HOME/analytics/google-cloud/scripts/define_aliases.sh"
   source "$HOME/analytics/google-cloud/scripts/kube.sh"
 
