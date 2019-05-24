@@ -243,6 +243,11 @@ if [[ "$IS_DEVBOX" == 0 ]]; then
   alias start-webpack-server='MP_ENV_TYPE=dev ./node_modules/.bin/webpack-dev-server --progress --colors --watch-poll=2000 --watch-aggregate-timeout=5000'
 fi
 
+
+if [[ "$IS_WORK_MACHINE" == 0 ]]; then
+  export NODE_OPTIONS=--max_old_space_size=4096
+fi
+
 if [[ "$IS_GCP_DEVBOX" == 0 ]]; then
   if [[ -S "$SSH_AUTH_SOCK" && ! -h "$SSH_AUTH_SOCK" ]]; then
     ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock;
