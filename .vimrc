@@ -130,9 +130,6 @@ set background=light
 colorscheme solarized " Color scheme to use
 syntax enable             " Enable syntax highlighting
 
-" Set highlighting colour for search
-" highlight search ctermfg=yellow ctermbg=darkblue
-
 " General option sets
 set nocompatible      " Use vim defaults
 set laststatus=2      " Always show status line
@@ -301,13 +298,14 @@ autocmd FilterWritePre * if &diff | syntax off | endif
 
 " Highlight extra whitespace at end of a line
 highlight ExtraWhitespace ctermbg=darkgreen guibg=darkgreen
+highlight SpellBad term=reverse ctermbg=lightGray
+
 match ExtraWhitespace /\s\+$/
 autocmd BufWinEnter * let w:ews1=matchadd('ExtraWhitespace', '\s\+$', -1)
 autocmd InsertEnter * let w:ews2=matchadd('ExtraWhitespace', '\s\+\%#\@<!$', -1)
 autocmd InsertLeave * let w:ews3=matchadd('ExtraWhitespace', '\s\+$', -1)
 autocmd BufWinLeave * call clearmatches()
 
-highlight SpellBad term=reverse ctermbg=lightGray
 
 " CScope options ------------------------------------------------
 
