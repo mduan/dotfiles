@@ -19,30 +19,16 @@ def call_shell(command):
 def command_exists(command):
     return not call_shell('which {} > /dev/null'.format(command))
 
+# region installations
+
 def install_ag():
     if command_exists('ag'):
         return
 
     if IS_LINUX:
         call_shell('sudo apt-get install silversearcher-ag')
-
-def install_fzf():
-    if command_exists('fzf'):
-        return
-
-    if IS_LINUX:
-        call_shell(
-            'rm ~/.fzf'
-            ' && git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf'
-            ' && ~/.fzf/install'
-        )
-
-def install_zsh():
-    if command_exists('zsh'):
-        return
-
-    if IS_LINUX:
-        call_shell('sudo apt-get install zsh')
+    elif IS_MAC:
+        call_shell('brew install the_silver_searcher')
 
 def install_fasd():
     if command_exists('fasd'):
@@ -54,6 +40,22 @@ def install_fasd():
             ' && sudo apt-get update'
             ' && sudo apt-get install fasd'
         )
+    elif IS_MAC:
+        call_shell('brew install fasd')
+
+def install_fzf():
+    if command_exists('fzf'):
+        return
+
+    if IS_LINUX:
+        call_shell(
+            'rm ~/.fzf'
+            ' && git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf'
+            ' && ~/.fzf/install'
+        )
+    elif IS_MAC:
+        call_shell('brew install fzf')
+        call_shell('$(brew --prefix)/opt/fzf/install')
 
 def install_nvm():
     if command_exists('nvm'):
@@ -64,7 +66,39 @@ def install_nvm():
         ' && git clone https://github.com/creationix/nvm.git ~/.nvm'
     )
 
+def install_tmux():
+    if command_exists('tmux'):
+        return
+
+    if IS_LINUX:
+        call_shell('sudo apt-get install tmux')
+    elif IS_MAC:
+        call_shell('brew install tmux')
+
+def install_zsh():
+    if command_exists('zsh'):
+        return
+
+    if IS_LINUX:
+        call_shell('sudo apt-get install zsh')
+    elif IS_MAC:
+        call_shell('brew install zsh')
+
+# endregion
+
+# region mac installations
+
+def install_brew():
+    if command_exists('brew'):
+        return
+
+    call_shell('/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"')
+
+# endregion
+
 def script():
+
+    additional_instructions = []
 
     if os.environ['USER'] == 'root':
         print 'Do not run this script as root'
@@ -77,10 +111,17 @@ def script():
     if response != 'y':
         sys.exit(1)
 
+    if IS_LINUX:
+        call_shell('sudo apt-get update')
+    if IS_MAC:
+        install_brew()
+        call_shell('brew doctor')
+
     install_ag()
     install_fasd()
     install_fzf()
     install_nvm()
+    install_tmux()
     install_zsh()
 
     call_shell('sudo chsh -s $(which zsh) $USER')
@@ -91,39 +132,47 @@ def script():
         '.gitignore_global',
         '.gvimrc',
         '.tmux.conf',
-        '.vim',
         '.vimrc',
         '.zshrc',
     ]
+
     for dotfile in DOTFILES:
         call_shell(
             'ln -sf {dir_path}/{dotfile} ~/{dotfile}'.format(
                 dir_path=DIR_PATH, dotfile=dotfile,
             )
         )
+    if IS_MAC:
+        additional_instructions.append('If using iTerm, remember to set color preset to Solarized: https://stackoverflow.com/a/40727851')
 
     call_shell('mkdir -p ~/bin')
-    call_shell('ln -sf {}/tmux_renum.sh ~/bin/tmux_renum.sh'.format(DIR_PATH))
+    call_shell('ln -sf {dir_path}/tmux_renum.sh ~/bin/tmux_renum.sh'.format(dir_path=DIR_PATH))
 
-    call_shell('rm -rf ~/.vim/ && mkdir -p ~/.vim')
+    call_shell('rm -rf ~/.vim/ && mkdir -p ~/.vim/bundle')
     vundle_path = '~/.vim/bundle/Vundle.vim'
     call_shell(
         'git clone https://github.com/VundleVim/Vundle.vim {vundle_path}'
         ' && vim +PluginInstall +qall'.format(vundle_path=vundle_path)
     )
-    call_shell('ln -sf {dir_path}/.vim/ftplugin ~/.vim/ftplugin')
+    call_shell('ln -sf {dir_path}/.vim/ftplugin ~/.vim/ftplugin'.format(dir_path=DIR_PATH))
 
     call_shell(
         'rm -rf ~/.oh-my-zsh'
         ' && git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh'
     )
 
-    # After the command below, need to manully restart tmux. Then Need to manually press prefix + I to fetch the plugin and source it.
-    # TODO: automate the above steps
     call_shell(
         'rm -rf ~/.tmux/plugins'
         ' && git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm'
     )
+    # TODO: automate the following instruction
+    additional_instructions.append('Start tmux, then press prefix + I to fetch the plugin and source it.')
+
+    print
+    print 'Additional instructions:'
+    for instruction in additional_instructions:
+        print '- {}'.format(instruction)
+    print
 
     print 'Log out and back in to start using Zsh'
 
