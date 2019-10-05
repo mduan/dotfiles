@@ -131,6 +131,7 @@ def script():
         '.gitconfig',
         '.gitignore_global',
         '.gvimrc',
+        '.ideavimrc',
         '.tmux.conf',
         '.vimrc',
         '.zshrc',
