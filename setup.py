@@ -35,11 +35,7 @@ def install_fasd():
         return
 
     if IS_LINUX:
-        call_shell(
-            'sudo add-apt-repository ppa:aacebedo/fasd'
-            ' && sudo apt-get update'
-            ' && sudo apt-get install fasd'
-        )
+        call_shell('sudo apt-get install fasd')
     elif IS_MAC:
         call_shell('brew install fasd')
 
@@ -112,8 +108,6 @@ def script():
         sys.exit(1)
 
     if IS_LINUX:
-        # Needed to install `add-apt-repository`
-        call_shell('sudo apt-get install software-properties-common')
         call_shell('sudo apt-get update')
     if IS_MAC:
         install_brew()
