@@ -112,6 +112,8 @@ def script():
         sys.exit(1)
 
     if IS_LINUX:
+        # Needed to install `add-apt-repository`
+        call_shell('sudo apt-get install software-properties-common')
         call_shell('sudo apt-get update')
     if IS_MAC:
         install_brew()
