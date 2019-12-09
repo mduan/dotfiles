@@ -2,9 +2,12 @@ export PATH="/usr/local/bin:${PATH}"
 
 [[ -d /home/mack ]]; IS_SL_DEVBOX=$?
 [[ -d /home/mack-gcp ]]; IS_GCP_DEVBOX=$?
+[[ "$USER" == "mduan" ]]; IS_MDUAN_WEB_DEVBOX=$?
 [[ "$IS_SL_DEVBOX" == 0 ]] || [[ "$IS_GCP_DEVBOX" == 0 ]]; IS_DEVBOX=$?
 [[ -d /Users/mackduan/mixpanel ]]; IS_WORK_LAPTOP=$?
 [[ "$IS_DEVBOX" == 0 ]] || [[ "$IS_WORK_LAPTOP" == 0 ]]; IS_WORK_MACHINE=$?
+
+echo "is_mduan_devbox: $IS_MDUAN_WEB_DEVBOX"
 
 if [[ "$IS_DEVBOX" == 0 ]]; then
   # This has to happen early in this file because it sets certain terminal styles that
@@ -248,7 +251,7 @@ if [[ "$IS_WORK_MACHINE" == 0 ]]; then
   export NODE_OPTIONS=--max_old_space_size=4096
 fi
 
-if [[ "$IS_GCP_DEVBOX" == 0 ]]; then
+if [[ "$IS_GCP_DEVBOX" == 0 ]] || [[ "$IS_MDUAN_WEB_DEVBOX" == 0 ]]; then
   if [[ -S "$SSH_AUTH_SOCK" && ! -h "$SSH_AUTH_SOCK" ]]; then
     ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock;
   fi
