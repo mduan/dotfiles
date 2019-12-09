@@ -2,7 +2,7 @@ export PATH="/usr/local/bin:${PATH}"
 
 [[ -d /home/mack ]]; IS_SL_DEVBOX=$?
 [[ -d /home/mack-gcp ]]; IS_GCP_DEVBOX=$?
-[[ "$USER" == "mduan" ]]; IS_MDUAN_WEB_DEVBOX=$?
+[[ "$HOST" == "mduan" ]]; IS_MDUAN_WEB_DEVBOX=$?
 [[ "$IS_SL_DEVBOX" == 0 ]] || [[ "$IS_GCP_DEVBOX" == 0 ]]; IS_DEVBOX=$?
 [[ -d /Users/mackduan/mixpanel ]]; IS_WORK_LAPTOP=$?
 [[ "$IS_DEVBOX" == 0 ]] || [[ "$IS_WORK_LAPTOP" == 0 ]]; IS_WORK_MACHINE=$?
