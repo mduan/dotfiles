@@ -7,8 +7,6 @@ export PATH="/usr/local/bin:${PATH}"
 [[ -d /Users/mackduan/mixpanel ]]; IS_WORK_LAPTOP=$?
 [[ "$IS_DEVBOX" == 0 ]] || [[ "$IS_WORK_LAPTOP" == 0 ]]; IS_WORK_MACHINE=$?
 
-echo "is_mduan_devbox: $IS_MDUAN_WEB_DEVBOX"
-
 if [[ "$IS_DEVBOX" == 0 ]]; then
   # This has to happen early in this file because it sets certain terminal styles that
   # override my own settings.
