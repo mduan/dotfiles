@@ -19,6 +19,9 @@ def call_shell(command):
 def command_exists(command):
     return not call_shell('which {} > /dev/null'.format(command))
 
+def path_exists(path):
+    return os.path.exists(os.path.expanduser('~/google-cloud-sdk'))
+
 # region installations
 
 def install_ag():
@@ -52,6 +55,18 @@ def install_fzf():
     elif IS_MAC:
         call_shell('brew install fzf')
         call_shell('$(brew --prefix)/opt/fzf/install')
+
+def install_google_cloud_sdk():
+    if command_exists('gcloud'):
+        return
+
+    if not path_exists('~/google-cloud-sdk'):
+        call_shell(
+            'https://dl.google.com/dl/cloudsdk/release/google-cloud-sdk.tar.gz'
+            '&& rm -rf /tmp/google-cloud-sdk && tar -xzf /tmp/google-cloud-sdk.tar.gz --directory ~/'
+        )
+
+    call_shell('~/google-cloud-sdk/install.sh')
 
 def install_nvm():
     if command_exists('nvm'):
@@ -164,6 +179,8 @@ def script():
     )
     # TODO: automate the following instruction
     additional_instructions.append('Start tmux, then press prefix + I to fetch the plugin and source it.')
+
+    install_google_cloud_sdk()
 
     print
     print 'Additional instructions:'

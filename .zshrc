@@ -2,6 +2,7 @@ export PATH="/usr/local/bin:${PATH}"
 
 [[ -d /home/mack ]]; IS_SL_DEVBOX=$?
 [[ -d /home/mack-gcp ]]; IS_GCP_DEVBOX=$?
+[[ "$USER" == "mackduan" ]]; IS_PERSONAL_LAPTOP=$?
 [[ "$HOST" == "mduan" ]]; IS_MDUAN_WEB_DEVBOX=$?
 [[ "$IS_SL_DEVBOX" == 0 ]] || [[ "$IS_GCP_DEVBOX" == 0 ]]; IS_DEVBOX=$?
 [[ -d /Users/mackduan/mixpanel ]]; IS_WORK_LAPTOP=$?
@@ -224,15 +225,13 @@ elif [[ "$IS_WORK_LAPTOP" == 0 ]]; then
   fi
 fi
 
-if [[ "$IS_SL_DEVBOX" == 0 ]]; then
+if [[ "$IS_SL_DEVBOX" == 0 ]] || [[ "$IS_WORK_LAPTOP" == 0 ]] || [[ "$IS_PERSONAL_LAPTOP" == 0 ]]; then
   source "$HOME/google-cloud-sdk/path.zsh.inc"
   source "$HOME/google-cloud-sdk/completion.zsh.inc"
 elif [[ "$IS_GCP_DEVBOX" == 0 ]]; then
   source ~/.gcpdevbox
-elif [[ "$IS_WORK_LAPTOP" == 0 ]]; then
-  source "$HOME/google-cloud-sdk/path.zsh.inc"
-  source "$HOME/google-cloud-sdk/completion.zsh.inc"
 fi
+
 
 if [[ "$IS_DEVBOX" == 0 ]]; then
   export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64/jre
@@ -263,9 +262,3 @@ if [[ -z "$TMUX" ]] && [[ "$IS_DEVBOX" == 0 ]]; then
     tmux attach -d -t analytics
   fi
 fi
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f ~/workspace/google-cloud-sdk/path.zsh.inc ]; then . ~/workspace/google-cloud-sdk/path.zsh.inc; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f ~/workspace/google-cloud-sdk/completion.zsh.inc ]; then . ~/workspace/google-cloud-sdk/completion.zsh.inc; fi
