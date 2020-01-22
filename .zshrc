@@ -1,14 +1,12 @@
 export PATH="/usr/local/bin:${PATH}"
 
-[[ -d /home/mack ]]; IS_SL_DEVBOX=$?
-[[ -d /home/mack-gcp ]]; IS_GCP_DEVBOX=$?
-[[ "$USER" == "mackduan" ]]; IS_PERSONAL_LAPTOP=$?
+[[ -d /home/mack ]]; IS_GCP_DEVBOX=$?
+[[ "$HOST" == "MackBook" ]]; IS_PERSONAL_LAPTOP=$?
 [[ "$HOST" == "mduan" ]]; IS_MDUAN_WEB_DEVBOX=$?
-[[ "$IS_SL_DEVBOX" == 0 ]] || [[ "$IS_GCP_DEVBOX" == 0 ]]; IS_DEVBOX=$?
-[[ -d /Users/mackduan/mixpanel ]]; IS_WORK_LAPTOP=$?
-[[ "$IS_DEVBOX" == 0 ]] || [[ "$IS_WORK_LAPTOP" == 0 ]]; IS_WORK_MACHINE=$?
+[[ "$HOST" == "MacksPanel" ]]; IS_WORK_LAPTOP=$?
+[[ "$IS_GCP_DEVBOX" == 0 ]] || [[ "$IS_WORK_LAPTOP" == 0 ]]; IS_WORK_MACHINE=$?
 
-if [[ "$IS_DEVBOX" == 0 ]]; then
+if [[ "$IS_GCP_DEVBOX" == 0 ]]; then
   # This has to happen early in this file because it sets certain terminal styles that
   # override my own settings.
   source "$HOME/analytics/.shellenv"
@@ -17,7 +15,7 @@ fi
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
-if [[ "$IS_DEVBOX" != 0 ]]; then
+if [[ "$IS_GCP_DEVBOX" != 0 ]]; then
   # Set name of the theme to load.
   # Look in ~/.oh-my-zsh/themes/
   # Optionally, if you set this to "random", it'll load a random theme each
@@ -82,7 +80,7 @@ eval "$(fasd --init auto)"
 
 source $ZSH/oh-my-zsh.sh
 
-if [[ "$IS_DEVBOX" != 0 ]]; then
+if [[ "$IS_GCP_DEVBOX" != 0 ]]; then
   PROMPT="$(virtualenv_prompt_info)$PROMPT"
 fi
 
@@ -217,7 +215,7 @@ export NVM_DIR="$HOME/.nvm"
 . "$NVM_DIR/nvm.sh"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-if [[ "$IS_DEVBOX" == 0 ]]; then
+if [[ "$IS_GCP_DEVBOX" == 0 ]]; then
   export VIRTUAL_ENV="$HOME/env"
 elif [[ "$IS_WORK_LAPTOP" == 0 ]]; then
   if [ -d ~/.virtualenvs/analytics ]; then
@@ -225,7 +223,7 @@ elif [[ "$IS_WORK_LAPTOP" == 0 ]]; then
   fi
 fi
 
-if [[ "$IS_SL_DEVBOX" == 0 ]] || [[ "$IS_WORK_LAPTOP" == 0 ]] || [[ "$IS_PERSONAL_LAPTOP" == 0 ]]; then
+if [[ "$IS_WORK_LAPTOP" == 0 ]] || [[ "$IS_PERSONAL_LAPTOP" == 0 ]]; then
   source "$HOME/google-cloud-sdk/path.zsh.inc"
   source "$HOME/google-cloud-sdk/completion.zsh.inc"
 elif [[ "$IS_GCP_DEVBOX" == 0 ]]; then
@@ -233,7 +231,7 @@ elif [[ "$IS_GCP_DEVBOX" == 0 ]]; then
 fi
 
 
-if [[ "$IS_DEVBOX" == 0 ]]; then
+if [[ "$IS_GCP_DEVBOX" == 0 ]]; then
   export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64/jre
 
   source "$HOME/analytics/google-cloud/scripts/define_aliases.sh"
@@ -255,10 +253,18 @@ if [[ "$IS_GCP_DEVBOX" == 0 ]] || [[ "$IS_MDUAN_WEB_DEVBOX" == 0 ]]; then
   export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock;
 fi
 
-if [[ -z "$TMUX" ]] && [[ "$IS_DEVBOX" == 0 ]]; then
+if [[ "$IS_WORK_LAPTOP" == 0 ]]; then
+  if [[ -f ~/.ssh/id_rsa ]]; then
+    eval "$(ssh-agent -s)"
+    ssh-add -K ~/.ssh/id_rsa
+  fi
+fi
+
+if [[ -z "$TMUX" ]] && [[ "$IS_GCP_DEVBOX" == 0 ]]; then
   echo -n "Reconnect to 'analytics' tmux session [Y/n]? "
   read -n REPLY
   if [[ "$REPLY" != "n" ]]; then
     tmux attach -d -t analytics
   fi
 fi
+
