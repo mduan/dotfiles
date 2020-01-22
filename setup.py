@@ -19,8 +19,8 @@ def call_shell(command):
 def command_exists(command):
     return not call_shell('which {} > /dev/null'.format(command))
 
-def path_exists(path):
-    return os.path.exists(os.path.expanduser('~/google-cloud-sdk'))
+def path_exists(p):
+    return os.path.exists(os.path.expanduser(p))
 
 # region installations
 
@@ -62,7 +62,7 @@ def install_google_cloud_sdk():
 
     if not path_exists('~/google-cloud-sdk'):
         call_shell(
-            'https://dl.google.com/dl/cloudsdk/release/google-cloud-sdk.tar.gz'
+            'curl -o /tmp/google-cloud-sdk.tar.gz https://dl.google.com/dl/cloudsdk/release/google-cloud-sdk.tar.gz'
             '&& rm -rf /tmp/google-cloud-sdk && tar -xzf /tmp/google-cloud-sdk.tar.gz --directory ~/'
         )
 
