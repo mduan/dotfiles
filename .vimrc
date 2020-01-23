@@ -210,8 +210,6 @@ nnoremap G Gzz
 
 " let [jk] go down and up by display lines instead of real lines. Let g[jk]
 " do what [jk] normally does
-nnoremap k gkzz
-nnoremap j gjzz
 nnoremap gk kzz
 nnoremap gj jzz
 
