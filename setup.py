@@ -67,7 +67,7 @@ def install_google_cloud_sdk():
     if not path_exists('~/google-cloud-sdk'):
         call_shell(
             'curl -o /tmp/google-cloud-sdk.tar.gz https://dl.google.com/dl/cloudsdk/release/google-cloud-sdk.tar.gz'
-            '&& rm -rf /tmp/google-cloud-sdk && tar -xzf /tmp/google-cloud-sdk.tar.gz --directory ~/'
+            ' && tar -xzf /tmp/google-cloud-sdk.tar.gz --directory ~/'
         )
 
     call_shell('~/google-cloud-sdk/install.sh')

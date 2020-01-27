@@ -3,10 +3,10 @@ export PATH="/usr/local/bin:${PATH}"
 [[ -d /home/mack ]]; IS_GCP_DEVBOX=$?
 [[ "$HOST" == "MackBook" ]]; IS_PERSONAL_LAPTOP=$?
 [[ "$HOST" == "mduan" ]]; IS_MDUAN_WEB_DEVBOX=$?
-[[ "$HOST" == "MacksPanel" ]]; IS_WORK_LAPTOP=$?
+[[ "$HOST" == "C02RT09FG8WL-mackduan" ]]; IS_WORK_LAPTOP=$?
 [[ "$IS_GCP_DEVBOX" == 0 ]] || [[ "$IS_WORK_LAPTOP" == 0 ]]; IS_WORK_MACHINE=$?
 
-if [[ "$IS_GCP_DEVBOX" == 0 ]]; then
+if [[ "$IS_WORK_MACHINE" == 0 ]]; then
   # This has to happen early in this file because it sets certain terminal styles that
   # override my own settings.
   source "$HOME/analytics/.shellenv"
