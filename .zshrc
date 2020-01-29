@@ -20,10 +20,11 @@ export ZSH_CUSTOM=~/.oh-my-zsh/custom
 
 if [[ ! -d $ZSH_CUSTOM/themes ]]; then
   mkdir "$ZSH_CUSTOM/themes"
-  if [[ ! -d $ZSH_CUSTOM/themes/agkozak ]]; then
-    git clone https://github.com/agkozak/agkozak-zsh-prompt $ZSH_CUSTOM/themes/agkozak
-    ln -s $ZSH_CUSTOM/themes/agkozak/agkozak-zsh-prompt.plugin.zsh $ZSH_CUSTOM/themes/agkozak.zsh-theme
-  fi
+fi
+
+if [[ ! -d $ZSH_CUSTOM/themes/agkozak ]]; then
+  git clone https://github.com/agkozak/agkozak-zsh-prompt $ZSH_CUSTOM/themes/agkozak
+  ln -s $ZSH_CUSTOM/themes/agkozak/agkozak-zsh-prompt.plugin.zsh $ZSH_CUSTOM/themes/agkozak.zsh-theme
 fi
 
 ZSH_THEME="agkozak"
