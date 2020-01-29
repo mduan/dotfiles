@@ -15,16 +15,20 @@ fi
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
-if [[ "$IS_GCP_DEVBOX" != 0 ]]; then
-  # Set name of the theme to load.
-  # Look in ~/.oh-my-zsh/themes/
-  # Optionally, if you set this to "random", it'll load a random theme each
-  # time that oh-my-zsh is loaded.
-  # Using a theme slows down zsh noticeably. Don't use a theme on devbox to speed things up and also helps differentiate it from
-  # local machine
-  # ZSH_THEME="kphoen"
-  ZSH_THEME="miloshadzic"
+
+export ZSH_CUSTOM=~/.oh-my-zsh/custom
+
+if [[ ! -d $ZSH_CUSTOM/themes ]]; then
+  mkdir "$ZSH_CUSTOM/themes"
+  if [[ ! -d $ZSH_CUSTOM/themes/agkozak ]]; then
+    git clone https://github.com/agkozak/agkozak-zsh-prompt $ZSH_CUSTOM/themes/agkozak
+    ln -s $ZSH_CUSTOM/themes/agkozak/agkozak-zsh-prompt.plugin.zsh $ZSH_CUSTOM/themes/agkozak.zsh-theme
+  fi
 fi
+
+ZSH_THEME="agkozak"
+# ZSH_THEME="kphoen"
+# ZSH_THEME="miloshadzic"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -61,12 +65,8 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 # HIST_STAMPS="mm/dd/yyyy"
 
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git fasd virtualenv)
 
@@ -110,7 +110,7 @@ fi
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 export PYENV_ROOT="${HOME}/.pyenv"
-if [ -d "${PYENV_ROOT}" ]; then
+if [[ -d "${PYENV_ROOT}" ]]; then
   export PATH="${PYENV_ROOT}/bin:${PATH}"
   eval "$(pyenv init -)"
 fi
@@ -218,7 +218,7 @@ export NVM_DIR="$HOME/.nvm"
 if [[ "$IS_GCP_DEVBOX" == 0 ]]; then
   export VIRTUAL_ENV="$HOME/env"
 elif [[ "$IS_WORK_LAPTOP" == 0 ]]; then
-  if [ -d ~/.virtualenvs/analytics ]; then
+  if [[ -d ~/.virtualenvs/analytics ]]; then
     source ~/.virtualenvs/analytics/bin/activate
   fi
 fi
