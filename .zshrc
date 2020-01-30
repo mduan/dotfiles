@@ -28,6 +28,10 @@ if [[ ! -d $ZSH_CUSTOM/themes/agkozak ]]; then
 fi
 
 ZSH_THEME="agkozak"
+
+AGKOZAK_LEFT_PROMPT_ONLY=1
+AGKOZAK_CUSTOM_SYMBOLS=( '⇣⇡' '⇣' '⇡' '+' 'x' '!' '>' '?' '$')
+
 # ZSH_THEME="kphoen"
 # ZSH_THEME="miloshadzic"
 
