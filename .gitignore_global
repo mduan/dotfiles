@@ -13,3 +13,4 @@ tmp/
 *.out
 *.o
 *.d
+go/src/vendor
