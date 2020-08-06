@@ -1,4 +1,6 @@
-export PATH="/usr/local/bin:${PATH}"
+export PATH="/usr/local/bin:${PATH}:$(go env GOPATH)/bin"
+
+export GOROOT="$(brew --prefix golang)/libexec"
 
 [[ -d /home/mack ]]; IS_GCP_DEVBOX=$?
 [[ "$HOST" == "MackBook" ]]; IS_PERSONAL_LAPTOP=$?
@@ -272,4 +274,3 @@ if [[ -z "$TMUX" ]] && [[ "$IS_GCP_DEVBOX" == 0 ]]; then
     tmux attach -d -t analytics
   fi
 fi
-
