@@ -16,8 +16,6 @@ def catch_shell(command):
 
 def get_jabra_address():
     devices_json = call_shell('blueutil --paired --format json')
-    print 'devices_json'
-    print devices_json
     devices = json.loads(devices_json)
 
     jabra_device = next((device for device in devices if device['name'] == 'Jabra Elite 75t'), None)
