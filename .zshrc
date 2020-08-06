@@ -1,6 +1,7 @@
-export PATH="/usr/local/bin:${PATH}:$(go env GOPATH)/bin"
-
-export GOROOT="$(brew --prefix golang)/libexec"
+if command -v go &> /dev/null; then
+  export PATH="/usr/local/bin:${PATH}:$(go env GOPATH)/bin"
+  export GOROOT="$(brew --prefix golang)/libexec"
+fi
 
 [[ -d /home/mack ]]; IS_GCP_DEVBOX=$?
 [[ "$HOST" == "MackBook" ]]; IS_PERSONAL_LAPTOP=$?
