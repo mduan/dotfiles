@@ -1,5 +1,6 @@
 .arc/
 .editorconfig
+.eslintcache
 .idea/
 .svn/
 .DS_Store?

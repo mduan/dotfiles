@@ -1,4 +1,4 @@
-#!/bin/python
+#!/usr/local/bin/python
 
 import os
 import os.path
@@ -103,11 +103,24 @@ def install_zsh():
 
 # region mac installations
 
-def install_brew():
+def install_homebrew():
     if command_exists('brew'):
         return
 
     call_shell('/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"')
+
+def install_sleep_watcher():
+    if not call_shell('brew ls | grep sleepwatcher'):
+        return
+
+    call_shell('brew install sleepwatcher')
+    print 'Installed SleepWatcher. Remember to enable permissions in Security & Privacy'
+
+def install_blueutil():
+    if command_exists('blueutil'):
+        return
+
+    call_shell('brew install blueutil')
 
 # endregion
 
@@ -129,8 +142,10 @@ def script():
     if IS_LINUX:
         call_shell('sudo apt-get update')
     if IS_MAC:
-        install_brew()
+        install_homebrew()
         call_shell('brew doctor')
+        install_sleep_watcher()
+        install_blueutil()
 
     install_ag()
     install_fasd()
@@ -150,6 +165,16 @@ def script():
         '.tmux.conf',
         '.vimrc',
         '.zshrc',
+
+        # region Mac OS specific
+        # TODO(mack): Limit copying these files to just Mac OS systems
+
+        # For SleepWatcher on Mac OS
+        '.sleep',
+        '.wake',
+        'sleepwatch_helper.py',
+
+        # endregion
     ]
 
     for dotfile in DOTFILES:
