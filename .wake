@@ -1,4 +1,0 @@
-#!/usr/bin/env python2
-
-from sleepwatch_helper import wake
-wake()

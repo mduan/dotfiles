@@ -171,7 +171,7 @@ def script():
 
         # For SleepWatcher on Mac OS
         '.sleep',
-        '.wake',
+        '.wakeup',
         'sleepwatch_helper.py',
 
         # endregion
