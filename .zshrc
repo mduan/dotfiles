@@ -226,8 +226,8 @@ export NVM_DIR="$HOME/.nvm"
 if [[ "$IS_GCP_DEVBOX" == 0 ]]; then
   export VIRTUAL_ENV="$HOME/env"
 elif [[ "$IS_WORK_LAPTOP" == 0 ]]; then
-  if [[ -d ~/.virtualenvs/analytics ]]; then
-    source ~/.virtualenvs/analytics/bin/activate
+  if [[ -d ~/.virtualenvs/py36 ]]; then
+    source ~/.virtualenvs/py36/bin/activate
   fi
 fi
 
