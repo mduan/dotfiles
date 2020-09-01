@@ -1,8 +1,3 @@
-if command -v go &> /dev/null; then
-  export PATH="/usr/local/bin:${PATH}:$(go env GOPATH)/bin"
-  export GOROOT="$(brew --prefix golang)/libexec"
-fi
-
 [[ -d /home/mack ]]; IS_GCP_DEVBOX=$?
 [[ "$HOST" == "MackBook" ]]; IS_PERSONAL_LAPTOP=$?
 [[ "$HOST" == "mduan" ]]; IS_MDUAN_WEB_DEVBOX=$?
@@ -13,6 +8,13 @@ if [[ "$IS_WORK_MACHINE" == 0 ]]; then
   # This has to happen early in this file because it sets certain terminal styles that
   # override my own settings.
   source "$HOME/analytics/.shellenv"
+fi
+
+if [[ "$uname" == "Darwin" ]]; then
+  if command -v go &> /dev/null; then
+    export PATH="/usr/local/bin:${PATH}:$(go env GOPATH)/bin"
+    export GOROOT="$(brew --prefix golang)/libexec"
+  fi
 fi
 
 # Path to your oh-my-zsh installation.
@@ -224,7 +226,9 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 if [[ "$IS_GCP_DEVBOX" == 0 ]]; then
-  export VIRTUAL_ENV="$HOME/env"
+  if [[ -d /virtualenv/py36 ]]; then
+    source /virtualenv/py36/bin/activate
+  fi
 elif [[ "$IS_WORK_LAPTOP" == 0 ]]; then
   if [[ -d ~/.virtualenvs/py36 ]]; then
     source ~/.virtualenvs/py36/bin/activate
