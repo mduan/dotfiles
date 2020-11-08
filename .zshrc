@@ -279,3 +279,10 @@ if [[ -z "$TMUX" ]] && [[ "$IS_GCP_DEVBOX" == 0 ]]; then
     tmux attach -d -t analytics
   fi
 fi
+
+if [[ "$IS_WORK_LAPTOP" == 0 ]]; then
+  if ! pgrep -x "sleepwatcher" > /dev/null ; then
+    sleepwatcher --daemon --wakeup 'networksetup -connectpppoeservice "SF VPN"'
+    sleepwatcher --daemon --sleep 'networksetup -disconnectpppoeservice "SF VPN"'
+  fi
+fi
