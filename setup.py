@@ -72,15 +72,6 @@ def install_google_cloud_sdk():
 
     call_shell('~/google-cloud-sdk/install.sh')
 
-def install_nvm():
-    if command_exists('nvm'):
-        return
-
-    call_shell(
-        'rm -rf ~/.nvm'
-        ' && git clone https://github.com/creationix/nvm.git ~/.nvm'
-    )
-
 def install_tmux():
     if command_exists('tmux'):
         return
@@ -150,7 +141,6 @@ def script():
     install_ag()
     install_fasd()
     install_fzf()
-    install_nvm()
     install_tmux()
     install_zsh()
 

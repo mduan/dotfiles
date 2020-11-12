@@ -221,10 +221,6 @@ function take() { mkdir -p $1 && cd $1 } # mkdir and cd
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-export NVM_DIR="$HOME/.nvm"
-. "$NVM_DIR/nvm.sh"
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
 if [[ "$IS_GCP_DEVBOX" == 0 ]]; then
   if [[ -d /virtualenv/py36 ]]; then
     source /virtualenv/py36/bin/activate
