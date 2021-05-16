@@ -4,6 +4,8 @@
 [[ "$HOST" == "C02RT09FG8WL-mackduan" ]]; IS_WORK_LAPTOP=$?
 [[ "$IS_GCP_DEVBOX" == 0 ]] || [[ "$IS_WORK_LAPTOP" == 0 ]]; IS_WORK_MACHINE=$?
 
+export PATH="/usr/local/bin:${PATH}"
+
 if [[ "$IS_WORK_MACHINE" == 0 ]]; then
   # This has to happen early in this file because it sets certain terminal styles that
   # override my own settings.
@@ -12,7 +14,7 @@ fi
 
 if [[ "$uname" == "Darwin" ]]; then
   if command -v go &> /dev/null; then
-    export PATH="/usr/local/bin:${PATH}:$(go env GOPATH)/bin"
+    export PATH="${PATH}:$(go env GOPATH)/bin"
     export GOROOT="$(brew --prefix golang)/libexec"
   fi
 fi
@@ -228,6 +230,9 @@ if [[ "$IS_GCP_DEVBOX" == 0 ]]; then
 elif [[ "$IS_WORK_LAPTOP" == 0 ]]; then
   if [[ -d ~/.virtualenvs/py36 ]]; then
     source ~/.virtualenvs/py36/bin/activate
+  fi
+  if [[ -d /Applications/Docker.app ]]; then
+    export PATH="${PATH}:/Applications/Docker.app/Contents/Resources/bin"
   fi
 fi
 
