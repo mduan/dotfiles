@@ -75,6 +75,7 @@ def install_google_cloud_sdk():
         )
 
     call_shell('~/google-cloud-sdk/install.sh')
+    print("Remember to run 'gcloud auth login'")
 
 def install_tmux():
     if command_exists('tmux'):
@@ -117,6 +118,18 @@ def install_blueutil():
         return
 
     call_shell('brew install blueutil')
+
+def install_jq():
+    if command_exists('jq'):
+        return
+
+    call_shell('brew install jq')
+
+def install_docker():
+    if path_exists('/Applications/Docker.app'):
+        return
+
+    call_shell('brew install --cask docker')
 
 # endregion
 
@@ -205,6 +218,10 @@ def script():
     additional_instructions.append('Start tmux, then press prefix + I to fetch the plugin and source it.')
 
     install_google_cloud_sdk()
+    if IS_WORK_LAPTOP:
+        install_jq()
+        install_docker()
+        print("Remember to 'gcloud auth configure-docker'")
 
     print
     print 'Additional instructions:'

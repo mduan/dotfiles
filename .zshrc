@@ -236,8 +236,8 @@ if [[ "$IS_GCP_DEVBOX" == 0 ]]; then
     source /virtualenv/py36/bin/activate
   fi
 elif [[ "$IS_WORK_LAPTOP" == 0 ]]; then
-  if [[ -d ~/.virtualenvs/py36 ]]; then
-    source ~/.virtualenvs/py36/bin/activate
+  if [[ -d ~/.virtualenvs/analytics ]]; then
+    source ~/.virtualenvs/analytics/bin/activate
   fi
   if [[ -d /Applications/Docker.app ]]; then
     export PATH="${PATH}:/Applications/Docker.app/Contents/Resources/bin"
