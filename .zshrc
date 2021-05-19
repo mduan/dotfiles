@@ -1,12 +1,20 @@
 [[ -d /home/mack ]]; IS_GCP_DEVBOX=$?
 [[ "$HOST" == "MackBook" ]]; IS_PERSONAL_LAPTOP=$?
 [[ "$HOST" == "mduan" ]]; IS_MDUAN_WEB_DEVBOX=$?
-[[ "$HOST" == "C02RT09FG8WL-mackduan" ]]; IS_WORK_LAPTOP=$?
+[[ "$HOST" == "C02RT09FG8WL-mackduan" ]] || [[ "$HOST" == "C02FL7URMD6M-mackduan" ]]; IS_WORK_LAPTOP=$?
 [[ "$IS_GCP_DEVBOX" == 0 ]] || [[ "$IS_WORK_LAPTOP" == 0 ]]; IS_WORK_MACHINE=$?
 
 export PATH="/usr/local/bin:${PATH}"
 
-if [[ "$IS_WORK_MACHINE" == 0 ]]; then
+if [[ "$IS_WORK_LAPTOP" == 0 ]] || [[ "$IS_PERSONAL_LAPTOP" == 0 ]]; then
+  # This must be before sourcing .shellenv since it depends on gcloud
+  source "$HOME/google-cloud-sdk/path.zsh.inc"
+  source "$HOME/google-cloud-sdk/completion.zsh.inc"
+elif [[ "$IS_GCP_DEVBOX" == 0 ]]; then
+  source ~/.gcpdevbox
+fi
+
+if [[ "$IS_GCP_DEVBOX" == 0 ]]; then
   # This has to happen early in this file because it sets certain terminal styles that
   # override my own settings.
   source "$HOME/analytics/.shellenv"
@@ -235,14 +243,6 @@ elif [[ "$IS_WORK_LAPTOP" == 0 ]]; then
     export PATH="${PATH}:/Applications/Docker.app/Contents/Resources/bin"
   fi
 fi
-
-if [[ "$IS_WORK_LAPTOP" == 0 ]] || [[ "$IS_PERSONAL_LAPTOP" == 0 ]]; then
-  source "$HOME/google-cloud-sdk/path.zsh.inc"
-  source "$HOME/google-cloud-sdk/completion.zsh.inc"
-elif [[ "$IS_GCP_DEVBOX" == 0 ]]; then
-  source ~/.gcpdevbox
-fi
-
 
 if [[ "$IS_GCP_DEVBOX" == 0 ]]; then
   export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64/jre

@@ -3,6 +3,7 @@
 import os
 import os.path
 import platform
+import socket
 import sys
 import subprocess
 
@@ -10,6 +11,9 @@ PLATFORM = platform.system()
 IS_MAC = PLATFORM == 'Darwin'
 IS_LINUX = PLATFORM == 'Linux'
 IS_WINDOWS = PLATFORM == 'Windows'
+
+host_name = socket.gethostname()
+IS_WORK_LAPTOP = host_name in ['C02RT09FG8WL-mackduan', 'C02FL7URMD6M-mackduan']
 
 DIR_PATH = os.path.dirname(os.path.realpath(__file__))
 
@@ -105,6 +109,7 @@ def install_sleep_watcher():
         return
 
     call_shell('brew install sleepwatcher')
+    call_shell('brew services start sleepwatcher')
     print 'Installed SleepWatcher. Remember to enable permissions in Security & Privacy'
 
 def install_blueutil():
